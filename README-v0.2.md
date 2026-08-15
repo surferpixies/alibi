@@ -13,7 +13,7 @@ Prototype de l'Affaire 001 — **La semaine au chalet**.
 Le prototype utilise les fichiers déjà présents dans le repo :
 
 - `assets/images/logo/alibi-logo.png`
-- `assets/images/cases/case-001-chalet/chalet-main.jpg`
+- `assets/images/cases/case-001-chalet/chalet-main.png`
 
 Ces images ne sont pas incluses dans ce ZIP.
 
