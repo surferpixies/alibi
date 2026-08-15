@@ -142,3 +142,21 @@ notesArea.addEventListener(
 );
 
 showScreen("home");
+
+
+const splashScreen =
+  document.getElementById("splash-screen");
+
+window.addEventListener(
+  "load",
+  () => {
+    window.setTimeout(
+      () => {
+        splashScreen.classList.add(
+          "is-hidden"
+        );
+      },
+      1500
+    );
+  }
+);
