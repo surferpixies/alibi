@@ -795,3 +795,27 @@ img {
     );
   }
 }
+
+
+/* v0.4 splash performance / refinement */
+.splash-logo {
+  width: min(360px, 76vw);
+  transform: translateZ(0);
+  will-change: opacity;
+}
+
+.splash-inner {
+  transform: translateY(-2vh);
+}
+
+.splash-screen {
+  transition:
+    opacity 0.32s ease,
+    visibility 0.32s ease;
+}
+
+@media (max-width: 580px) {
+  .splash-logo {
+    width: min(300px, 72vw);
+  }
+}
