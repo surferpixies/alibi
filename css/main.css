@@ -674,3 +674,124 @@ img {
     font-size: 0.59rem;
   }
 }
+
+
+/* SPLASH SCREEN */
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding:
+    calc(24px + env(safe-area-inset-top))
+    22px
+    calc(24px + env(safe-area-inset-bottom));
+
+  background:
+    radial-gradient(
+      circle at 50% 36%,
+      rgba(39, 126, 209, 0.18),
+      transparent 34%
+    ),
+    linear-gradient(
+      180deg,
+      #08131f 0%,
+      #06101a 58%,
+      #040a11 100%
+    );
+
+  opacity: 1;
+  visibility: visible;
+
+  transition:
+    opacity 0.42s ease,
+    visibility 0.42s ease;
+}
+
+.splash-screen.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.splash-inner {
+  width: min(100%, 560px);
+  text-align: center;
+  transform: translateY(-3vh);
+}
+
+.splash-logo {
+  width: min(420px, 84vw);
+  height: auto;
+  margin: 0 auto 22px;
+
+  filter:
+    drop-shadow(
+      0 24px 42px rgba(0, 0, 0, 0.42)
+    );
+}
+
+.splash-tagline {
+  margin: 0;
+
+  color: var(--text);
+
+  font-size: clamp(
+    1.6rem,
+    7vw,
+    2.65rem
+  );
+
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.045em;
+}
+
+/* Home screen: keep the logo present, but more discreet */
+.hero .logo {
+  width: min(185px, 48vw);
+}
+
+.hero .logo-wrap {
+  margin-bottom: 12px;
+}
+
+/* Home case card: less oversized so the image doesn't dominate the page */
+.case-image-wrap {
+  height: 225px;
+}
+
+.case-content {
+  padding-top: 18px;
+}
+
+/* Intro can stay more cinematic, but not full-wall on small screens */
+.intro-image img {
+  object-position: center center;
+}
+
+@media (max-width: 580px) {
+  .hero .logo {
+    width: min(160px, 44vw);
+  }
+
+  .case-image-wrap {
+    height: 190px;
+  }
+
+  .splash-logo {
+    width: min(340px, 82vw);
+  }
+
+  .splash-tagline {
+    font-size: clamp(
+      1.45rem,
+      8vw,
+      2.15rem
+    );
+  }
+}
