@@ -11,6 +11,8 @@
     content="ALIBI — Une enquête. Plusieurs jours. Tout le monde a une histoire."
   />
 
+  <link rel="preload" as="image" href="assets/images/logo/alibi-logo-splash.png" />
+
   <link rel="apple-touch-icon" href="assets/images/logo/alibi-logo.png" />
   <link rel="icon" type="image/png" href="assets/images/logo/alibi-logo.png" />
 
@@ -23,9 +25,11 @@
   <section id="splash-screen" class="splash-screen" aria-hidden="false">
     <div class="splash-inner">
       <img
-        src="assets/images/logo/alibi-logo.png"
+        src="assets/images/logo/alibi-logo-splash.png"
         alt="Logo ALIBI"
         class="splash-logo"
+        decoding="async"
+        fetchpriority="high"
       />
 
       <p class="splash-tagline">
@@ -152,21 +156,21 @@
           <p class="story-time">SAMEDI — 8 H 17</p>
 
           <p>
-            Tu te réveilles après la fête de la veille.
+            Un cri strident venu de loin te tire brusquement du sommeil.
           </p>
 
           <p>
-            La maison est encore silencieuse.
-            Des verres traînent sur la terrasse,
-            le feu extérieur est presque éteint.
+            Pendant quelques secondes, tout est silencieux.
+            Puis tu entends des pas précipités dehors.
           </p>
 
           <p>
-            Puis quelqu’un crie depuis le quai.
+            Encore engourdi par la veille, tu te lèves et sors du chalet
+            pour comprendre ce qui se passe.
           </p>
 
           <p class="story-reveal">
-            Le canot a disparu.
+            Quelque chose ne va pas près du lac.
           </p>
         </div>
 
@@ -208,8 +212,9 @@
             <p class="panel-kicker">SAMEDI — 8 H 17</p>
             <h3>La scène</h3>
             <p>
-              Le canot qui était attaché au quai hier soir n’est plus là.
-              Pour l’instant, personne ne sait qui l’a pris.
+              En arrivant au quai, tu comprends ce qui a provoqué le cri :
+              le canot qui était attaché ici hier soir a disparu.
+              La corde est toujours nouée au poteau.
             </p>
           </div>
 
