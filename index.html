@@ -11,192 +11,334 @@
     content="ALIBI — Une enquête. Plusieurs jours. Tout le monde a une histoire."
   />
 
-  <!-- Icône navigateur + écran d'accueil iPhone -->
-  <link
-    rel="apple-touch-icon"
-    href="assets/images/logo/alibi-logo.png"
-  />
-
-  <link
-    rel="icon"
-    type="image/png"
-    href="assets/images/logo/alibi-logo.png"
-  />
+  <link rel="apple-touch-icon" href="assets/images/logo/alibi-logo.png" />
+  <link rel="icon" type="image/png" href="assets/images/logo/alibi-logo.png" />
 
   <link rel="stylesheet" href="css/main.css" />
 </head>
 
 <body>
-  <main class="app-shell">
+  <div id="app">
 
-    <section class="hero">
-      <div class="logo-wrap">
+    <!-- ACCUEIL -->
+    <main id="home-screen" class="screen screen-active">
+      <div class="app-shell">
+
+        <section class="hero">
+          <div class="logo-wrap">
+            <img
+              src="assets/images/logo/alibi-logo.png"
+              alt="Logo ALIBI"
+              class="logo"
+            />
+          </div>
+
+          <p class="eyebrow">AFFAIRES • PREUVES • MENSONGES</p>
+
+          <h1>
+            Une enquête.<br />
+            Plusieurs jours.
+          </h1>
+
+          <p class="hero-text">
+            Explore les scènes, confronte les témoignages et reconstruis
+            ce qui s’est réellement passé.
+          </p>
+        </section>
+
+        <section class="case-section">
+          <p class="section-label">AFFAIRE DISPONIBLE</p>
+
+          <article class="case-card">
+            <div class="case-image-wrap">
+              <img
+                src="assets/images/cases/case-001-chalet/chalet-main.jpg"
+                alt="Chalet au bord d'un lac"
+                class="case-image"
+              />
+
+              <div class="case-image-overlay"></div>
+
+              <div class="case-badge">
+                AFFAIRE 001
+              </div>
+
+              <div class="case-title-overlay">
+                <span class="case-kicker">DOSSIER OUVERT</span>
+                <h2>La semaine au chalet</h2>
+              </div>
+            </div>
+
+            <div class="case-content">
+              <p class="case-description">
+                Une semaine entre amis au bord d’un lac.
+                Une fête le vendredi soir.
+                Au réveil, le canot a disparu.
+              </p>
+
+              <div class="case-meta">
+                <div class="meta-item">
+                  <span class="meta-label">Durée</span>
+                  <strong>Plusieurs jours</strong>
+                </div>
+
+                <div class="meta-item">
+                  <span class="meta-label">Mode</span>
+                  <strong>Temps réel / Continu</strong>
+                </div>
+
+                <div class="meta-item">
+                  <span class="meta-label">Difficulté</span>
+                  <strong>À déterminer</strong>
+                </div>
+              </div>
+
+              <button
+                id="start-case-btn"
+                class="primary-btn"
+                type="button"
+              >
+                <span>Commencer l’enquête</span>
+                <span class="btn-arrow">→</span>
+              </button>
+            </div>
+          </article>
+        </section>
+
+        <footer class="footer">
+          <p>ALIBI • Prototype v0.2</p>
+        </footer>
+
+      </div>
+    </main>
+
+    <!-- INTRO AFFAIRE -->
+    <section id="intro-screen" class="screen intro-screen" aria-hidden="true">
+      <div class="intro-image">
         <img
-          src="assets/images/logo/alibi-logo.png"
-          alt="Logo ALIBI"
-          class="logo"
+          src="assets/images/cases/case-001-chalet/chalet-main.jpg"
+          alt="Le chalet au bord du lac"
         />
+        <div class="intro-gradient"></div>
       </div>
 
-      <p class="eyebrow">AFFAIRES • PREUVES • MENSONGES</p>
+      <div class="intro-content">
+        <button id="intro-back-btn" class="ghost-back-btn" type="button">
+          ← Retour
+        </button>
 
-      <h1>
-        Une enquête.<br />
-        Plusieurs jours.
-      </h1>
+        <p class="intro-case-number">ALIBI • AFFAIRE 001</p>
 
-      <p class="hero-text">
-        Explore les scènes, confronte les témoignages et reconstruis ce qui
-        s’est réellement passé.
-      </p>
-    </section>
+        <h2>La semaine au chalet</h2>
 
-    <section class="case-section">
-      <p class="section-label">
-        AFFAIRE DISPONIBLE
-      </p>
+        <div class="intro-story">
+          <p class="story-time">SAMEDI — 8 H 17</p>
 
-      <article class="case-card">
-        <div class="case-image-wrap">
-          <img
-            src="assets/images/cases/case-001-chalet/chalet-main.jpg"
-            alt="Chalet au bord d'un lac"
-            class="case-image"
-          />
-
-          <div class="case-image-overlay"></div>
-
-          <div class="case-badge">
-            AFFAIRE 001
-          </div>
-
-          <div class="case-title-overlay">
-            <span class="case-kicker">
-              DOSSIER OUVERT
-            </span>
-
-            <h2>
-              La semaine au chalet
-            </h2>
-          </div>
-        </div>
-
-        <div class="case-content">
-          <p class="case-description">
-            Une semaine entre amis au bord d’un lac.
-            Une fête le vendredi soir.
-            Au réveil, le canot a disparu.
+          <p>
+            Tu te réveilles après la fête de la veille.
           </p>
 
-          <div class="case-meta">
+          <p>
+            La maison est encore silencieuse.
+            Des verres traînent sur la terrasse,
+            le feu extérieur est presque éteint.
+          </p>
 
-            <div class="meta-item">
-              <span class="meta-label">
-                Durée
-              </span>
+          <p>
+            Puis quelqu’un crie depuis le quai.
+          </p>
 
-              <strong>
-                Plusieurs jours
-              </strong>
-            </div>
-
-            <div class="meta-item">
-              <span class="meta-label">
-                Mode
-              </span>
-
-              <strong>
-                Temps réel / Continu
-              </strong>
-            </div>
-
-            <div class="meta-item">
-              <span class="meta-label">
-                Difficulté
-              </span>
-
-              <strong>
-                À déterminer
-              </strong>
-            </div>
-
-          </div>
-
-          <button
-            id="start-case-btn"
-            class="primary-btn"
-            type="button"
-          >
-            <span>
-              Commencer l’enquête
-            </span>
-
-            <span class="btn-arrow">
-              →
-            </span>
-          </button>
+          <p class="story-reveal">
+            Le canot a disparu.
+          </p>
         </div>
-      </article>
+
+        <button
+          id="open-case-btn"
+          class="primary-btn intro-open-btn"
+          type="button"
+        >
+          <span>Ouvrir le dossier</span>
+          <span class="btn-arrow">→</span>
+        </button>
+      </div>
     </section>
 
-    <footer class="footer">
-      <p>
-        ALIBI • Prototype v0.1
-      </p>
-    </footer>
+    <!-- DOSSIER PRINCIPAL -->
+    <section id="case-screen" class="screen case-screen" aria-hidden="true">
 
-  </main>
+      <header class="case-header">
+        <div>
+          <p class="case-header-kicker">AFFAIRE 001</p>
+          <h2>La semaine au chalet</h2>
+        </div>
 
-  <div
-    id="case-modal"
-    class="modal"
-    aria-hidden="true"
-  >
-    <div
-      class="modal-backdrop"
-      data-close-modal
-    ></div>
+        <button
+          id="case-home-btn"
+          class="header-icon-btn"
+          type="button"
+          aria-label="Retour à l'accueil"
+        >
+          ⌂
+        </button>
+      </header>
 
-    <div
-      class="modal-panel"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="modal-title"
-    >
-      <button
-        class="modal-close"
-        type="button"
-        aria-label="Fermer"
-        data-close-modal
-      >
-        ×
-      </button>
+      <main class="case-main">
 
-      <p class="modal-kicker">
-        AFFAIRE 001
-      </p>
+        <!-- SCÈNE -->
+        <section class="case-panel panel-active" data-panel="scene">
+          <div class="panel-heading">
+            <p class="panel-kicker">SAMEDI — 8 H 17</p>
+            <h3>La scène</h3>
+            <p>
+              Le canot qui était attaché au quai hier soir n’est plus là.
+              Pour l’instant, personne ne sait qui l’a pris.
+            </p>
+          </div>
 
-      <h2 id="modal-title">
-        La semaine au chalet
-      </h2>
+          <div class="scene-card">
+            <img
+              src="assets/images/cases/case-001-chalet/chalet-main.jpg"
+              alt="Vue du chalet et du lac"
+            />
 
-      <p>
-        Le moteur d’enquête sera branché ici à la prochaine étape.
-      </p>
+            <div class="scene-card-content">
+              <span class="status-pill">SCÈNE ACTIVE</span>
+              <h4>Le quai</h4>
+              <p>
+                Le lac est calme. La corde du canot est toujours attachée
+                au poteau du quai.
+              </p>
 
-      <p class="modal-note">
-        Pour l’instant, on valide seulement l’identité visuelle,
-        l’accueil et la navigation.
-      </p>
+              <button class="secondary-btn" type="button">
+                Examiner la scène
+              </button>
+            </div>
+          </div>
+        </section>
 
-      <button
-        class="secondary-btn"
-        type="button"
-        data-close-modal
-      >
-        Retour
-      </button>
-    </div>
+        <!-- PERSONNES -->
+        <section class="case-panel" data-panel="people">
+          <div class="panel-heading">
+            <p class="panel-kicker">DOSSIER</p>
+            <h3>Personnes</h3>
+            <p>
+              Les personnes présentes au chalet apparaîtront ici au fur et
+              à mesure de l’enquête.
+            </p>
+          </div>
+
+          <div class="placeholder-card">
+            <span class="placeholder-icon">👥</span>
+            <strong>Personnages à venir</strong>
+            <p>
+              On branchera bientôt les profils, relations et témoignages.
+            </p>
+          </div>
+        </section>
+
+        <!-- PREUVES -->
+        <section class="case-panel" data-panel="evidence">
+          <div class="panel-heading">
+            <p class="panel-kicker">DOSSIER</p>
+            <h3>Preuves</h3>
+            <p>
+              Les photos, objets, messages, témoignages et analyses seront
+              centralisés ici.
+            </p>
+          </div>
+
+          <div class="placeholder-card">
+            <span class="placeholder-icon">📁</span>
+            <strong>Aucune preuve classée</strong>
+            <p>
+              Examine la scène pour commencer à remplir le dossier.
+            </p>
+          </div>
+        </section>
+
+        <!-- CHRONOLOGIE -->
+        <section class="case-panel" data-panel="timeline">
+          <div class="panel-heading">
+            <p class="panel-kicker">RECONSTRUCTION</p>
+            <h3>Chronologie</h3>
+            <p>
+              Les faits confirmés et les déclarations seront placés ici
+              dans l’ordre du temps.
+            </p>
+          </div>
+
+          <div class="timeline">
+            <div class="timeline-item confirmed">
+              <span class="timeline-time">VEN. SOIR</span>
+              <div>
+                <strong>Fête au chalet</strong>
+                <p>Plusieurs amis se joignent au groupe.</p>
+              </div>
+            </div>
+
+            <div class="timeline-item confirmed">
+              <span class="timeline-time">SAM. 8:17</span>
+              <div>
+                <strong>Le canot est porté disparu</strong>
+                <p>Premier fait confirmé du dossier.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- NOTES -->
+        <section class="case-panel" data-panel="notes">
+          <div class="panel-heading">
+            <p class="panel-kicker">CARNET</p>
+            <h3>Notes</h3>
+            <p>
+              Garde ici tes propres hypothèses pendant l’enquête.
+            </p>
+          </div>
+
+          <textarea
+            id="detective-notes"
+            class="notes-area"
+            placeholder="Ex. : Qui a vu le canot pour la dernière fois ?"
+          ></textarea>
+
+          <p class="notes-hint">
+            Les notes sont sauvegardées automatiquement sur cet appareil.
+          </p>
+        </section>
+
+      </main>
+
+      <nav class="bottom-nav" aria-label="Navigation du dossier">
+        <button class="nav-btn nav-active" type="button" data-target="scene">
+          <span class="nav-icon">⌖</span>
+          <span>Scène</span>
+        </button>
+
+        <button class="nav-btn" type="button" data-target="people">
+          <span class="nav-icon">👥</span>
+          <span>Personnes</span>
+        </button>
+
+        <button class="nav-btn" type="button" data-target="evidence">
+          <span class="nav-icon">▣</span>
+          <span>Preuves</span>
+        </button>
+
+        <button class="nav-btn" type="button" data-target="timeline">
+          <span class="nav-icon">◷</span>
+          <span>Chronologie</span>
+        </button>
+
+        <button class="nav-btn" type="button" data-target="notes">
+          <span class="nav-icon">✎</span>
+          <span>Notes</span>
+        </button>
+      </nav>
+
+    </section>
+
   </div>
 
   <script src="js/app.js"></script>
