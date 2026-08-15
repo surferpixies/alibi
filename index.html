@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>ALIBI</title>
+
+  <meta
+    name="description"
+    content="ALIBI — Une enquête. Plusieurs jours. Tout le monde a une histoire."
+  />
+
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+
+<body>
+  <main class="app-shell">
+
+    <section class="hero">
+      <div class="logo-wrap">
+        <img
+          src="assets/images/logo/alibi-logo.png"
+          alt="Logo ALIBI"
+          class="logo"
+        />
+      </div>
+
+      <p class="eyebrow">AFFAIRES • PREUVES • MENSONGES</p>
+
+      <h1>Une enquête.<br />Plusieurs jours.</h1>
+
+      <p class="hero-text">
+        Explore les scènes, confronte les témoignages et reconstruis ce qui
+        s’est réellement passé.
+      </p>
+    </section>
+
+    <section class="case-section">
+      <p class="section-label">AFFAIRE DISPONIBLE</p>
+
+      <article class="case-card">
+        <div class="case-image-wrap">
+          <img
+            src="assets/images/cases/case-001-chalet/chalet-main.jpg"
+            alt="Chalet au bord d'un lac"
+            class="case-image"
+          />
+
+          <div class="case-image-overlay"></div>
+
+          <div class="case-badge">
+            AFFAIRE 001
+          </div>
+
+          <div class="case-title-overlay">
+            <span class="case-kicker">DOSSIER OUVERT</span>
+            <h2>La semaine au chalet</h2>
+          </div>
+        </div>
+
+        <div class="case-content">
+          <p class="case-description">
+            Une semaine entre amis au bord d’un lac.
+            Une fête le vendredi soir.
+            Au réveil, le canot a disparu.
+          </p>
+
+          <div class="case-meta">
+            <div class="meta-item">
+              <span class="meta-label">Durée</span>
+              <strong>Plusieurs jours</strong>
+            </div>
+
+            <div class="meta-item">
+              <span class="meta-label">Mode</span>
+              <strong>Temps réel / Continu</strong>
+            </div>
+
+            <div class="meta-item">
+              <span class="meta-label">Difficulté</span>
+              <strong>À déterminer</strong>
+            </div>
+          </div>
+
+          <button
+            id="start-case-btn"
+            class="primary-btn"
+            type="button"
+          >
+            <span>Commencer l’enquête</span>
+            <span class="btn-arrow">→</span>
+          </button>
+        </div>
+      </article>
+    </section>
+
+    <footer class="footer">
+      <p>ALIBI • Prototype v0.1</p>
+    </footer>
+
+  </main>
+
+  <div
+    id="case-modal"
+    class="modal"
+    aria-hidden="true"
+  >
+    <div
+      class="modal-backdrop"
+      data-close-modal
+    ></div>
+
+    <div
+      class="modal-panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
+      <button
+        class="modal-close"
+        type="button"
+        aria-label="Fermer"
+        data-close-modal
+      >
+        ×
+      </button>
+
+      <p class="modal-kicker">AFFAIRE 001</p>
+
+      <h2 id="modal-title">
+        La semaine au chalet
+      </h2>
+
+      <p>
+        Le moteur d’enquête sera branché ici à la prochaine étape.
+      </p>
+
+      <p class="modal-note">
+        Pour l’instant, on valide seulement l’identité visuelle,
+        l’accueil et la navigation.
+      </p>
+
+      <button
+        class="secondary-btn"
+        type="button"
+        data-close-modal
+      >
+        Retour
+      </button>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
