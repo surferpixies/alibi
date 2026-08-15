@@ -156,7 +156,7 @@ window.addEventListener(
           "is-hidden"
         );
       },
-      1500
+      1350
     );
   }
 );
