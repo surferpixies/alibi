@@ -73,12 +73,6 @@ const discoveryTitle =
 const discoveryText =
   document.getElementById("discovery-text");
 
-const discoveryVisual =
-  document.getElementById("discovery-visual");
-
-const discoveryZoomLayer =
-  document.getElementById("discovery-zoom-layer");
-
 const discoveryKicker =
   document.getElementById("discovery-kicker");
 
@@ -427,22 +421,7 @@ function inspectHotspot(hotspot) {
       )
     );
 
-  discoveryVisual.hidden =
-    false;
-
-  discoveryZoomLayer.style.backgroundImage =
-    `url("${state.scene.image}")`;
-
-  discoveryZoomLayer.style.backgroundPosition =
-    `${hotspot.x}% ${hotspot.y}%`;
-
-  discoveryZoomLayer.setAttribute(
-    "aria-label",
-    hotspot.title ||
-    hotspot.label
-  );
-
-  sceneDiscovery.hidden =
+sceneDiscovery.hidden =
     false;
 
   renderHotspots();
