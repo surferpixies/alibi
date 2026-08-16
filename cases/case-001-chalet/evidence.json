@@ -1,0 +1,47 @@
+[
+  {
+    "id": "ev-canoe-missing",
+    "type": "observation",
+    "title": "Canot disparu",
+    "icon": "🛶",
+    "summary": "Le canot qui était attaché au quai vendredi soir n’est plus là.",
+    "source": "Scène du quai",
+    "hidden": true
+  },
+  {
+    "id": "ev-rope",
+    "type": "physical",
+    "title": "Corde toujours nouée",
+    "icon": "🪢",
+    "summary": "La corde est toujours nouée au poteau du quai. Elle n’est ni coupée ni arrachée.",
+    "source": "Scène du quai",
+    "hidden": true
+  },
+  {
+    "id": "ev-wet-boards",
+    "type": "physical",
+    "title": "Planches mouillées",
+    "icon": "💧",
+    "summary": "Une petite zone du quai est encore humide malgré le soleil du matin.",
+    "source": "Scène du quai",
+    "hidden": true
+  },
+  {
+    "id": "ev-firepit",
+    "type": "observation",
+    "title": "Feu presque éteint",
+    "icon": "🔥",
+    "summary": "Le foyer extérieur contient encore quelques braises. Des verres et chaises sont restés autour.",
+    "source": "Terrasse",
+    "hidden": true
+  },
+  {
+    "id": "ev-lake",
+    "type": "observation",
+    "title": "Lac calme",
+    "icon": "🌊",
+    "summary": "Le lac est très calme ce matin. Aucun canot n’est visible depuis le quai.",
+    "source": "Scène du quai",
+    "hidden": true
+  }
+]

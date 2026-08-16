@@ -1,0 +1,82 @@
+[
+  {
+    "id": "elodie",
+    "name": "Élodie",
+    "age": 38,
+    "role": "Propriétaire du chalet",
+    "status": "introuvable",
+    "relationship": "Conjointe de Mathieu",
+    "summary": "Sa famille possède le chalet depuis plusieurs générations.",
+    "firstStatement": null
+  },
+  {
+    "id": "mathieu",
+    "name": "Mathieu",
+    "age": 40,
+    "role": "Conjoint d’Élodie",
+    "status": "présent",
+    "relationship": "Père de Léa et Thomas",
+    "summary": "Il connaît le chalet et le lac depuis des années.",
+    "firstStatement": "Élodie n’est pas dans la chambre. Je pensais qu’elle était déjà dehors."
+  },
+  {
+    "id": "camille",
+    "name": "Camille",
+    "age": 37,
+    "role": "Amie proche",
+    "status": "présente",
+    "relationship": "Conjointe de David",
+    "summary": "Amie du couple depuis longtemps.",
+    "firstStatement": "Le canot était encore là assez tard hier soir. J’en suis presque certaine."
+  },
+  {
+    "id": "david",
+    "name": "David",
+    "age": 39,
+    "role": "Ami proche",
+    "status": "présent",
+    "relationship": "Conjoint de Camille",
+    "summary": "Il est venu plusieurs fois au chalet.",
+    "firstStatement": "J’ai entendu le cri moi aussi. Quand je suis sorti, Alex était déjà dehors."
+  },
+  {
+    "id": "alex",
+    "name": "Alex",
+    "age": 41,
+    "role": "Ami du groupe",
+    "status": "présent",
+    "relationship": "Invité seul pour la semaine",
+    "summary": "Deux de ses amis se sont joints au groupe pour la soirée de vendredi.",
+    "firstStatement": "Je me suis réveillé tôt. J’étais près de la terrasse quand j’ai entendu le cri."
+  },
+  {
+    "id": "lea",
+    "name": "Léa",
+    "age": 12,
+    "role": "Enfant",
+    "status": "présente",
+    "relationship": "Fille d’Élodie et Mathieu",
+    "summary": "Elle observe beaucoup ce qui se passe autour d’elle.",
+    "firstStatement": null
+  },
+  {
+    "id": "thomas",
+    "name": "Thomas",
+    "age": 8,
+    "role": "Enfant",
+    "status": "présent",
+    "relationship": "Fils d’Élodie et Mathieu",
+    "summary": "Il était couché avant la fin de la soirée.",
+    "firstStatement": null
+  },
+  {
+    "id": "nathan",
+    "name": "Nathan",
+    "age": 10,
+    "role": "Enfant",
+    "status": "présent",
+    "relationship": "Fils de Camille et David",
+    "summary": "Il prend souvent des photos avec sa tablette.",
+    "firstStatement": null
+  }
+]

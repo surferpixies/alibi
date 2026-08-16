@@ -1,0 +1,22 @@
+[
+  {
+    "id": "event-first-scene",
+    "type": "scene",
+    "trigger": "case_started",
+    "scene": "dock"
+  },
+  {
+    "id": "event-first-objective",
+    "type": "objective",
+    "trigger": "scene_opened",
+    "objective": "Examiner les environs du quai et comprendre ce qui a pu se passer."
+  },
+  {
+    "id": "event-people-unlock",
+    "type": "unlock",
+    "trigger": "evidence_count",
+    "count": 3,
+    "target": "people",
+    "message": "Tu as assez observé la scène pour commencer à parler aux autres."
+  }
+]

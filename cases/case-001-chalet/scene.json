@@ -1,0 +1,48 @@
+{
+  "id": "dock",
+  "title": "Le quai",
+  "image": "assets/images/cases/case-001-chalet/chalet-main.png",
+  "intro": "En arrivant près du lac, tu comprends ce qui a provoqué l’agitation.",
+  "hotspots": [
+    {
+      "id": "hotspot-canoe",
+      "label": "Emplacement du canot",
+      "x": 66,
+      "y": 72,
+      "evidence": "ev-canoe-missing",
+      "observation": "L’espace où le canot était attaché est vide. Il était encore là vendredi soir."
+    },
+    {
+      "id": "hotspot-rope",
+      "label": "Corde",
+      "x": 58,
+      "y": 78,
+      "evidence": "ev-rope",
+      "observation": "La corde est encore nouée proprement au poteau. Quelqu’un a détaché le canot."
+    },
+    {
+      "id": "hotspot-water",
+      "label": "Bord du quai",
+      "x": 72,
+      "y": 61,
+      "evidence": "ev-wet-boards",
+      "observation": "Quelques planches sont encore humides. Impossible de savoir depuis combien de temps."
+    },
+    {
+      "id": "hotspot-lake",
+      "label": "Lac",
+      "x": 83,
+      "y": 40,
+      "evidence": "ev-lake",
+      "observation": "Le lac est calme. Aucun canot n’est visible depuis ici."
+    },
+    {
+      "id": "hotspot-fire",
+      "label": "Foyer extérieur",
+      "x": 31,
+      "y": 67,
+      "evidence": "ev-firepit",
+      "observation": "Le feu de la veille est presque éteint. La soirée s’est terminée tard."
+    }
+  ]
+}

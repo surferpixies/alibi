@@ -1,0 +1,24 @@
+[
+  {
+    "id": "tl-party",
+    "time": "Vendredi soir",
+    "title": "Soirée au chalet",
+    "description": "Les deux amis d’Alex se joignent au groupe pour la soirée.",
+    "status": "known"
+  },
+  {
+    "id": "tl-cry",
+    "time": "Samedi 08:17",
+    "title": "Un cri se fait entendre",
+    "description": "Le cri réveille plusieurs personnes au chalet.",
+    "status": "confirmed"
+  },
+  {
+    "id": "tl-canoe",
+    "time": "Samedi matin",
+    "title": "Canot porté disparu",
+    "description": "Le canot n’est plus attaché au quai.",
+    "status": "locked",
+    "unlockBy": "ev-canoe-missing"
+  }
+]

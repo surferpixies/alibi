@@ -1,0 +1,20 @@
+{
+  "id": "case-001-chalet",
+  "number": "001",
+  "title": "La semaine au chalet",
+  "subtitle": "Une semaine au chalet entre amis. Un vendredi soir bien arrosé.",
+  "day": "Samedi",
+  "startTime": "08:17",
+  "teaser": [
+    "Une semaine au chalet entre amis.",
+    "Un vendredi soir bien arrosé.",
+    "Un cri te tire du sommeil.",
+    "Des pas se font entendre au loin.",
+    "Quelque chose s’est passé cette nuit."
+  ],
+  "opening": {
+    "title": "Le quai",
+    "intro": "En sortant du chalet, tu suis les voix jusqu’au bord du lac. Plusieurs personnes sont déjà près du quai.",
+    "reveal": "Le canot qui était attaché ici hier soir a disparu."
+  }
+}
