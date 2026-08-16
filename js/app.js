@@ -34,6 +34,24 @@ const evidenceEmpty =
 const peopleGrid =
   document.getElementById("people-grid");
 
+const characterDialogue =
+  document.getElementById("character-dialogue");
+
+const dialoguePortrait =
+  document.getElementById("dialogue-portrait");
+
+const dialogueName =
+  document.getElementById("dialogue-name");
+
+const dialogueRole =
+  document.getElementById("dialogue-role");
+
+const dialogueThread =
+  document.getElementById("dialogue-thread");
+
+const dialogueTopics =
+  document.getElementById("dialogue-topics");
+
 const timelineList =
   document.getElementById("timeline-list");
 
@@ -58,14 +76,8 @@ const discoveryText =
 const discoveryVisual =
   document.getElementById("discovery-visual");
 
-const discoveryDetailImage =
-  document.getElementById("discovery-detail-image");
-
 const discoveryZoomLayer =
   document.getElementById("discovery-zoom-layer");
-
-const discoveryZoomButton =
-  document.getElementById("discovery-zoom-btn");
 
 const discoveryKicker =
   document.getElementById("discovery-kicker");
@@ -94,6 +106,7 @@ const state = {
   evidence: [],
   timeline: [],
   events: [],
+  dialogue: {},
   scene: null,
   activeHotspot: null,
   observedHotspots: new Set(
@@ -151,14 +164,16 @@ async function loadCaseData() {
       evidence,
       timeline,
       events,
-      scene
+      scene,
+      dialogue
     ] = await Promise.all([
       loadJson("case.json"),
       loadJson("characters.json"),
       loadJson("evidence.json"),
       loadJson("timeline.json"),
       loadJson("events.json"),
-      loadJson("scene.json")
+      loadJson("scene.json"),
+      loadJson("dialogue.json")
     ]);
 
     state.caseData =
@@ -178,6 +193,9 @@ async function loadCaseData() {
 
     state.scene =
       scene;
+
+    state.dialogue =
+      dialogue;
 
     renderCase();
   } catch (error) {
@@ -356,110 +374,6 @@ function renderHotspots() {
 }
 
 
-function showFallbackCrop(hotspot) {
-  discoveryVisual.hidden =
-    false;
-
-  discoveryVisual.classList.remove(
-    "image-mode"
-  );
-
-  discoveryVisual.classList.add(
-    "crop-mode"
-  );
-
-  discoveryVisual.classList.remove(
-    "is-zoomed"
-  );
-
-  discoveryDetailImage.hidden =
-    true;
-
-  discoveryZoomLayer.hidden =
-    false;
-
-  discoveryZoomLayer.style.backgroundImage =
-    `url("${hotspot.fallbackImage || hotspot.detailImage || state.scene.image}")`;
-
-  discoveryZoomLayer.style.backgroundPosition =
-    hotspot.fallbackPosition ||
-    `${hotspot.x}% ${hotspot.y}%`;
-
-  discoveryZoomLayer.setAttribute(
-    "aria-label",
-    hotspot.title ||
-    hotspot.label
-  );
-
-  discoveryZoomButton.hidden =
-    false;
-  discoveryZoomButton.setAttribute(
-    "aria-pressed",
-    "false"
-  );
-  discoveryZoomButton.setAttribute(
-    "aria-label",
-    "Agrandir le détail"
-  );
-  discoveryZoomButton.title =
-    "Agrandir le détail";
-}
-
-function showDetailImage(hotspot) {
-  discoveryVisual.hidden =
-    false;
-
-  discoveryVisual.classList.remove(
-    "crop-mode"
-  );
-
-  discoveryVisual.classList.add(
-    "image-mode"
-  );
-
-  discoveryVisual.classList.remove(
-    "is-zoomed"
-  );
-
-  discoveryZoomLayer.hidden =
-    true;
-
-  discoveryDetailImage.hidden =
-    false;
-  discoveryDetailImage.alt =
-    hotspot.title ||
-    hotspot.label;
-  discoveryDetailImage.src =
-    hotspot.detailImage;
-
-  discoveryZoomButton.hidden =
-    false;
-  discoveryZoomButton.setAttribute(
-    "aria-pressed",
-    "false"
-  );
-  discoveryZoomButton.setAttribute(
-    "aria-label",
-    "Agrandir le détail"
-  );
-  discoveryZoomButton.title =
-    "Agrandir le détail";
-}
-
-function renderDiscoveryMedia(hotspot) {
-  state.activeHotspot =
-    hotspot;
-
-  if (
-    hotspot.detailMode === "image" &&
-    hotspot.detailImage
-  ) {
-    showDetailImage(hotspot);
-  } else {
-    showFallbackCrop(hotspot);
-  }
-}
-
 function inspectHotspot(hotspot) {
   state.observedHotspots.add(
     hotspot.id
@@ -513,15 +427,20 @@ function inspectHotspot(hotspot) {
       )
     );
 
-  if (
-    hotspot.detailImage ||
-    hotspot.fallbackImage
-  ) {
-    renderDiscoveryMedia(hotspot);
-  } else {
-    discoveryVisual.hidden =
-      true;
-  }
+  discoveryVisual.hidden =
+    false;
+
+  discoveryZoomLayer.style.backgroundImage =
+    `url("${state.scene.image}")`;
+
+  discoveryZoomLayer.style.backgroundPosition =
+    `${hotspot.x}% ${hotspot.y}%`;
+
+  discoveryZoomLayer.setAttribute(
+    "aria-label",
+    hotspot.title ||
+    hotspot.label
+  );
 
   sceneDiscovery.hidden =
     false;
@@ -580,28 +499,53 @@ function renderPeople() {
             ? "missing"
             : "";
 
-        const statement =
-          person.firstStatement
-            ? `<div class="person-statement">« ${person.firstStatement} »</div>`
-            : "";
+        const canTalk =
+          person.interactive === true;
 
         card.innerHTML = `
-          <div class="person-top">
-            <div>
-              <h4>${person.name}</h4>
-              <div class="person-meta">${person.role} • ${person.age} ans</div>
-            </div>
+          <div class="person-card-main">
+            <img
+              class="person-portrait"
+              src="${person.portrait}"
+              alt="${person.portraitAlt || person.name}"
+            />
 
-            <span class="person-status ${statusClass}">
-              ${person.status}
-            </span>
+            <div class="person-card-body">
+              <div class="person-top">
+                <div>
+                  <h4>${person.name}</h4>
+                  <div class="person-meta">
+                    ${person.role} • ${person.age} ans
+                  </div>
+                </div>
+
+                <span class="person-status ${statusClass}">
+                  ${person.status}
+                </span>
+              </div>
+
+              <p class="person-summary">
+                ${person.summary}
+              </p>
+            </div>
           </div>
 
-          <p class="person-summary">
-            ${person.summary}
-          </p>
-
-          ${statement}
+          <div class="person-card-actions">
+            <button
+              class="person-talk-btn"
+              type="button"
+              data-person-id="${person.id}"
+              ${canTalk ? "" : "disabled"}
+            >
+              ${
+                canTalk
+                  ? `Parler à ${person.name}`
+                  : person.status === "introuvable"
+                    ? "Introuvable"
+                    : "Pas disponible maintenant"
+              }
+            </button>
+          </div>
         `;
 
         peopleGrid.appendChild(
@@ -609,7 +553,190 @@ function renderPeople() {
         );
       }
     );
+
+  peopleGrid
+    .querySelectorAll(
+      ".person-talk-btn:not(:disabled)"
+    )
+    .forEach(
+      (button) => {
+        button.addEventListener(
+          "click",
+          () => {
+            openCharacterDialogue(
+              button.dataset.personId
+            );
+          }
+        );
+      }
+    );
 }
+
+function getCharacterById(id) {
+  return state.characters.find(
+    (person) => person.id === id
+  );
+}
+
+function addDialogueMessage(
+  speaker,
+  text,
+  character
+) {
+  const message =
+    document.createElement("div");
+
+  message.className =
+    `dialogue-message ${speaker}`;
+
+  if (speaker === "player") {
+    message.innerHTML = `
+      <div class="dialogue-bubble">
+        ${text}
+      </div>
+    `;
+  } else {
+    message.innerHTML = `
+      <img
+        class="dialogue-mini-portrait"
+        src="${character.portrait}"
+        alt=""
+      />
+
+      <div class="dialogue-bubble">
+        ${text}
+      </div>
+    `;
+  }
+
+  dialogueThread.appendChild(
+    message
+  );
+}
+
+function openCharacterDialogue(personId) {
+  const character =
+    getCharacterById(personId);
+
+  const conversation =
+    state.dialogue[personId];
+
+  if (
+    !character ||
+    !conversation
+  ) {
+    return;
+  }
+
+  dialoguePortrait.src =
+    character.portrait;
+
+  dialoguePortrait.alt =
+    character.portraitAlt ||
+    character.name;
+
+  dialogueName.textContent =
+    character.name;
+
+  dialogueRole.textContent =
+    `${character.role} • ${character.age} ans`;
+
+  dialogueThread.innerHTML =
+    "";
+
+  dialogueTopics.innerHTML =
+    "";
+
+  conversation.opening.forEach(
+    (line) => {
+      addDialogueMessage(
+        line.speaker,
+        line.text,
+        character
+      );
+    }
+  );
+
+  conversation.topics.forEach(
+    (topic) => {
+      const button =
+        document.createElement("button");
+
+      button.type =
+        "button";
+
+      button.className =
+        "dialogue-topic-btn";
+
+      button.textContent =
+        topic.label;
+
+      button.addEventListener(
+        "click",
+        () => {
+          if (
+            button.classList.contains(
+              "used"
+            )
+          ) {
+            return;
+          }
+
+          button.classList.add(
+            "used"
+          );
+
+          addDialogueMessage(
+            "player",
+            topic.label,
+            character
+          );
+
+          addDialogueMessage(
+            personId,
+            topic.reply,
+            character
+          );
+
+          dialogueThread.scrollTo({
+            top:
+              dialogueThread.scrollHeight,
+            behavior: "smooth"
+          });
+        }
+      );
+
+      dialogueTopics.appendChild(
+        button
+      );
+    }
+  );
+
+  characterDialogue.hidden =
+    false;
+
+  characterDialogue.setAttribute(
+    "aria-hidden",
+    "false"
+  );
+
+  document.body.style.overflow =
+    "hidden";
+}
+
+function closeCharacterDialogue() {
+  characterDialogue.hidden =
+    true;
+
+  characterDialogue.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+  document.body.style.overflow =
+    "";
+}
+
 
 function renderEvidence() {
   const found =
@@ -764,44 +891,6 @@ navButtons.forEach(
   }
 );
 
-discoveryDetailImage.addEventListener(
-  "error",
-  () => {
-    if (state.activeHotspot) {
-      showFallbackCrop(
-        state.activeHotspot
-      );
-    }
-  }
-);
-
-discoveryZoomButton.addEventListener(
-  "click",
-  () => {
-    const zoomed =
-      discoveryVisual.classList.toggle(
-        "is-zoomed"
-      );
-
-    discoveryZoomButton.setAttribute(
-      "aria-pressed",
-      zoomed ? "true" : "false"
-    );
-
-    discoveryZoomButton.setAttribute(
-      "aria-label",
-      zoomed
-        ? "Réduire le détail"
-        : "Agrandir le détail"
-    );
-
-    discoveryZoomButton.title =
-      zoomed
-        ? "Réduire le détail"
-        : "Agrandir le détail";
-  }
-);
-
 closeDiscoveryButton.addEventListener(
   "click",
   () => {
@@ -814,6 +903,31 @@ talkToPeopleButton.addEventListener(
   "click",
   () => {
     showPanel("people");
+  }
+);
+
+document
+  .querySelectorAll(
+    "[data-dialogue-close]"
+  )
+  .forEach(
+    (element) => {
+      element.addEventListener(
+        "click",
+        closeCharacterDialogue
+      );
+    }
+  );
+
+document.addEventListener(
+  "keydown",
+  (event) => {
+    if (
+      event.key === "Escape" &&
+      !characterDialogue.hidden
+    ) {
+      closeCharacterDialogue();
+    }
   }
 );
 
