@@ -269,32 +269,13 @@
           </div>
 
           <div class="scene-discovery" id="scene-discovery" hidden>
-            <div class="discovery-visual" id="discovery-visual">
-              <img
-                id="discovery-detail-image"
-                class="discovery-detail-image"
-                src=""
-                alt=""
-                hidden
-              />
-
+            <div class="discovery-visual simple-crop" id="discovery-visual">
               <div
                 id="discovery-zoom-layer"
                 class="discovery-zoom-layer"
                 role="img"
                 aria-label=""
-                hidden
               ></div>
-
-              <button
-                id="discovery-zoom-btn"
-                class="discovery-zoom-btn"
-                type="button"
-                aria-label="Agrandir le détail"
-                title="Agrandir le détail"
-              >
-                ⌕
-              </button>
             </div>
 
             <div class="discovery-content">
@@ -423,5 +404,32 @@
   </div>
 
   <script src="js/app.js"></script>
+
+  <div
+    id="character-dialogue"
+    class="character-dialogue"
+    aria-hidden="true"
+    hidden
+  >
+    <div class="dialogue-backdrop" data-dialogue-close></div>
+
+    <section class="dialogue-sheet" role="dialog" aria-modal="true" aria-labelledby="dialogue-name">
+      <button class="dialogue-close" type="button" aria-label="Fermer" data-dialogue-close>×</button>
+
+      <header class="dialogue-person-header">
+        <img id="dialogue-portrait" class="dialogue-portrait" src="" alt="" />
+        <div>
+          <p class="dialogue-kicker">CONVERSATION</p>
+          <h3 id="dialogue-name"></h3>
+          <p id="dialogue-role" class="dialogue-role"></p>
+        </div>
+      </header>
+
+      <div id="dialogue-thread" class="dialogue-thread"></div>
+
+      <div id="dialogue-topics" class="dialogue-topics"></div>
+    </section>
+  </div>
+
 </body>
 </html>
