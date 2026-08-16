@@ -2,47 +2,57 @@
   "id": "dock",
   "title": "Le quai",
   "image": "assets/images/cases/case-001-chalet/chalet-main.png",
-  "intro": "En arrivant près du lac, tu comprends ce qui a provoqué l’agitation.",
+  "intro": "En arrivant près du lac, tu comprends ce qui a provoqué l’agitation : le canot n’est plus attaché au quai.",
+  "automaticEvidence": [
+    "ev-canoe-missing"
+  ],
   "hotspots": [
     {
-      "id": "hotspot-canoe",
-      "label": "Emplacement du canot",
-      "x": 66,
-      "y": 72,
-      "evidence": "ev-canoe-missing",
-      "observation": "L’espace où le canot était attaché est vide. Il était encore là vendredi soir."
-    },
-    {
       "id": "hotspot-rope",
-      "label": "Corde",
-      "x": 58,
-      "y": 78,
+      "label": "La corde",
+      "x": 60,
+      "y": 77,
+      "kind": "evidence",
       "evidence": "ev-rope",
-      "observation": "La corde est encore nouée proprement au poteau. Quelqu’un a détaché le canot."
+      "title": "La corde",
+      "observation": "Elle est toujours solidement nouée au poteau, mais son autre extrémité pend dans l’eau. Le canot ne s’est donc pas simplement détaché tout seul.",
+      "detailImage": "assets/images/cases/case-001-chalet/chalet-main.png",
+      "detailPosition": "62% 76%"
     },
     {
-      "id": "hotspot-water",
-      "label": "Bord du quai",
-      "x": 72,
-      "y": 61,
-      "evidence": "ev-wet-boards",
-      "observation": "Quelques planches sont encore humides. Impossible de savoir depuis combien de temps."
+      "id": "hotspot-footprints",
+      "label": "Empreintes",
+      "x": 71,
+      "y": 72,
+      "kind": "evidence",
+      "evidence": "ev-muddy-footprints",
+      "title": "Empreintes boueuses",
+      "observation": "Plusieurs marques boueuses apparaissent sur les planches près du bord. Certaines semblent assez nettes pour distinguer un motif de semelle.",
+      "detailImage": "assets/images/cases/case-001-chalet/chalet-main.png",
+      "detailPosition": "70% 74%"
     },
     {
-      "id": "hotspot-lake",
-      "label": "Lac",
-      "x": 83,
-      "y": 40,
-      "evidence": "ev-lake",
-      "observation": "Le lac est calme. Aucun canot n’est visible depuis ici."
+      "id": "hotspot-fabric",
+      "label": "Quelque chose accroché au quai",
+      "x": 77,
+      "y": 68,
+      "kind": "evidence",
+      "evidence": "ev-fabric",
+      "title": "Un morceau de tissu",
+      "observation": "Un petit morceau de tissu est coincé sur une écharde au bord du quai. Impossible pour l’instant de savoir à qui il appartient.",
+      "detailImage": "assets/images/cases/case-001-chalet/chalet-main.png",
+      "detailPosition": "77% 70%"
     },
     {
       "id": "hotspot-fire",
-      "label": "Foyer extérieur",
+      "label": "Le foyer",
       "x": 31,
-      "y": 67,
-      "evidence": "ev-firepit",
-      "observation": "Le feu de la veille est presque éteint. La soirée s’est terminée tard."
+      "y": 68,
+      "kind": "observation",
+      "title": "Le feu de la veille",
+      "observation": "Le foyer est presque éteint. Quelques braises subsistent encore sous les cendres. Pour l’instant, tu ne sais pas si ce détail est important.",
+      "detailImage": "assets/images/cases/case-001-chalet/chalet-main.png",
+      "detailPosition": "31% 68%"
     }
   ]
 }

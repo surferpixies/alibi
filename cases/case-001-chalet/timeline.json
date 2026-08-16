@@ -17,8 +17,7 @@
     "id": "tl-canoe",
     "time": "Samedi matin",
     "title": "Canot porté disparu",
-    "description": "Le canot n’est plus attaché au quai.",
-    "status": "locked",
-    "unlockBy": "ev-canoe-missing"
+    "description": "Le canot n’est plus attaché au quai. La corde est encore sur place.",
+    "status": "confirmed"
   }
 ]
