@@ -55,6 +55,15 @@ const discoveryTitle =
 const discoveryText =
   document.getElementById("discovery-text");
 
+const discoveryImage =
+  document.getElementById("discovery-image");
+
+const discoveryKicker =
+  document.getElementById("discovery-kicker");
+
+const discoveryAdded =
+  document.getElementById("discovery-added");
+
 const closeDiscoveryButton =
   document.getElementById("close-discovery-btn");
 
@@ -77,6 +86,13 @@ const state = {
   timeline: [],
   events: [],
   scene: null,
+  observedHotspots: new Set(
+    JSON.parse(
+      localStorage.getItem(
+        "alibi-case-001-observed-hotspots"
+      ) || "[]"
+    )
+  ),
   foundEvidence: new Set(
     JSON.parse(
       localStorage.getItem(
@@ -91,6 +107,13 @@ function saveProgress() {
     "alibi-case-001-found-evidence",
     JSON.stringify(
       [...state.foundEvidence]
+    )
+  );
+
+  localStorage.setItem(
+    "alibi-case-001-observed-hotspots",
+    JSON.stringify(
+      [...state.observedHotspots]
     )
   );
 }
@@ -247,6 +270,22 @@ function renderScene() {
   sceneImage.src =
     state.scene.image;
 
+  if (
+    Array.isArray(
+      state.scene.automaticEvidence
+    )
+  ) {
+    state.scene.automaticEvidence.forEach(
+      (id) => {
+        state.foundEvidence.add(id);
+      }
+    );
+
+    saveProgress();
+    renderEvidence();
+    renderTimeline();
+  }
+
   renderHotspots();
 }
 
@@ -264,8 +303,8 @@ function renderHotspots() {
         document.createElement("button");
 
       const alreadyFound =
-        state.foundEvidence.has(
-          hotspot.evidence
+        state.observedHotspots.has(
+          hotspot.id
         );
 
       button.type =
@@ -307,25 +346,82 @@ function renderHotspots() {
 }
 
 function inspectHotspot(hotspot) {
-  const evidence =
-    getEvidenceById(
-      hotspot.evidence
-    );
-
-  revealEvidence(
-    hotspot.evidence
+  state.observedHotspots.add(
+    hotspot.id
   );
 
+  let evidence =
+    null;
+
+  let newlyAdded =
+    false;
+
+  if (
+    hotspot.kind === "evidence" &&
+    hotspot.evidence
+  ) {
+    evidence =
+      getEvidenceById(
+        hotspot.evidence
+      );
+
+    newlyAdded =
+      revealEvidence(
+        hotspot.evidence
+      );
+  } else {
+    saveProgress();
+    renderHotspots();
+    updateObjective();
+  }
+
+  discoveryKicker.textContent =
+    hotspot.kind === "evidence"
+      ? "INDICE OBSERVÉ"
+      : "OBSERVATION";
+
   discoveryTitle.textContent =
-    evidence
-      ? evidence.title
-      : hotspot.label;
+    hotspot.title ||
+    hotspot.label;
 
   discoveryText.textContent =
     hotspot.observation;
 
+  discoveryAdded.hidden =
+    !(
+      hotspot.kind === "evidence" &&
+      (
+        newlyAdded ||
+        state.foundEvidence.has(
+          hotspot.evidence
+        )
+      )
+    );
+
+  if (hotspot.detailImage) {
+    discoveryImage.src =
+      hotspot.detailImage;
+
+    discoveryImage.alt =
+      hotspot.title ||
+      hotspot.label;
+
+    discoveryImage.style.objectPosition =
+      hotspot.detailPosition ||
+      "center center";
+
+    discoveryImage.parentElement.hidden =
+      false;
+  } else {
+    discoveryImage.parentElement.hidden =
+      true;
+  }
+
   sceneDiscovery.hidden =
     false;
+
+  renderHotspots();
+  updateObjective();
 
   sceneDiscovery.scrollIntoView({
     behavior: "smooth",
@@ -334,26 +430,26 @@ function inspectHotspot(hotspot) {
 }
 
 function updateObjective() {
-  const sceneEvidence =
+  const hotspotIds =
     state.scene
       ? state.scene.hotspots.map(
-          (item) => item.evidence
+          (item) => item.id
         )
       : [];
 
-  const foundCount =
-    sceneEvidence.filter(
+  const observedCount =
+    hotspotIds.filter(
       (id) =>
-        state.foundEvidence.has(id)
+        state.observedHotspots.has(id)
     ).length;
 
   objectiveProgress.textContent =
-    foundCount === 0
+    observedCount === 0
       ? "Aucun élément observé"
-      : `${foundCount} élément${foundCount > 1 ? "s" : ""} observé${foundCount > 1 ? "s" : ""}`;
+      : `${observedCount} élément${observedCount > 1 ? "s" : ""} observé${observedCount > 1 ? "s" : ""}`;
 
   talkToPeopleButton.hidden =
-    foundCount < 3;
+    observedCount < 3;
 }
 
 function renderPeople() {
