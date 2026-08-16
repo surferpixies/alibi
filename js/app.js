@@ -55,8 +55,17 @@ const discoveryTitle =
 const discoveryText =
   document.getElementById("discovery-text");
 
-const discoveryImage =
-  document.getElementById("discovery-image");
+const discoveryVisual =
+  document.getElementById("discovery-visual");
+
+const discoveryDetailImage =
+  document.getElementById("discovery-detail-image");
+
+const discoveryZoomLayer =
+  document.getElementById("discovery-zoom-layer");
+
+const discoveryZoomButton =
+  document.getElementById("discovery-zoom-btn");
 
 const discoveryKicker =
   document.getElementById("discovery-kicker");
@@ -86,6 +95,7 @@ const state = {
   timeline: [],
   events: [],
   scene: null,
+  activeHotspot: null,
   observedHotspots: new Set(
     JSON.parse(
       localStorage.getItem(
@@ -345,6 +355,111 @@ function renderHotspots() {
   );
 }
 
+
+function showFallbackCrop(hotspot) {
+  discoveryVisual.hidden =
+    false;
+
+  discoveryVisual.classList.remove(
+    "image-mode"
+  );
+
+  discoveryVisual.classList.add(
+    "crop-mode"
+  );
+
+  discoveryVisual.classList.remove(
+    "is-zoomed"
+  );
+
+  discoveryDetailImage.hidden =
+    true;
+
+  discoveryZoomLayer.hidden =
+    false;
+
+  discoveryZoomLayer.style.backgroundImage =
+    `url("${hotspot.fallbackImage || hotspot.detailImage || state.scene.image}")`;
+
+  discoveryZoomLayer.style.backgroundPosition =
+    hotspot.fallbackPosition ||
+    `${hotspot.x}% ${hotspot.y}%`;
+
+  discoveryZoomLayer.setAttribute(
+    "aria-label",
+    hotspot.title ||
+    hotspot.label
+  );
+
+  discoveryZoomButton.hidden =
+    false;
+  discoveryZoomButton.setAttribute(
+    "aria-pressed",
+    "false"
+  );
+  discoveryZoomButton.setAttribute(
+    "aria-label",
+    "Agrandir le détail"
+  );
+  discoveryZoomButton.title =
+    "Agrandir le détail";
+}
+
+function showDetailImage(hotspot) {
+  discoveryVisual.hidden =
+    false;
+
+  discoveryVisual.classList.remove(
+    "crop-mode"
+  );
+
+  discoveryVisual.classList.add(
+    "image-mode"
+  );
+
+  discoveryVisual.classList.remove(
+    "is-zoomed"
+  );
+
+  discoveryZoomLayer.hidden =
+    true;
+
+  discoveryDetailImage.hidden =
+    false;
+  discoveryDetailImage.alt =
+    hotspot.title ||
+    hotspot.label;
+  discoveryDetailImage.src =
+    hotspot.detailImage;
+
+  discoveryZoomButton.hidden =
+    false;
+  discoveryZoomButton.setAttribute(
+    "aria-pressed",
+    "false"
+  );
+  discoveryZoomButton.setAttribute(
+    "aria-label",
+    "Agrandir le détail"
+  );
+  discoveryZoomButton.title =
+    "Agrandir le détail";
+}
+
+function renderDiscoveryMedia(hotspot) {
+  state.activeHotspot =
+    hotspot;
+
+  if (
+    hotspot.detailMode === "image" &&
+    hotspot.detailImage
+  ) {
+    showDetailImage(hotspot);
+  } else {
+    showFallbackCrop(hotspot);
+  }
+}
+
 function inspectHotspot(hotspot) {
   state.observedHotspots.add(
     hotspot.id
@@ -398,22 +513,13 @@ function inspectHotspot(hotspot) {
       )
     );
 
-  if (hotspot.detailImage) {
-    discoveryImage.src =
-      hotspot.detailImage;
-
-    discoveryImage.alt =
-      hotspot.title ||
-      hotspot.label;
-
-    discoveryImage.style.objectPosition =
-      hotspot.detailPosition ||
-      "center center";
-
-    discoveryImage.parentElement.hidden =
-      false;
+  if (
+    hotspot.detailImage ||
+    hotspot.fallbackImage
+  ) {
+    renderDiscoveryMedia(hotspot);
   } else {
-    discoveryImage.parentElement.hidden =
+    discoveryVisual.hidden =
       true;
   }
 
@@ -655,6 +761,44 @@ navButtons.forEach(
         );
       }
     );
+  }
+);
+
+discoveryDetailImage.addEventListener(
+  "error",
+  () => {
+    if (state.activeHotspot) {
+      showFallbackCrop(
+        state.activeHotspot
+      );
+    }
+  }
+);
+
+discoveryZoomButton.addEventListener(
+  "click",
+  () => {
+    const zoomed =
+      discoveryVisual.classList.toggle(
+        "is-zoomed"
+      );
+
+    discoveryZoomButton.setAttribute(
+      "aria-pressed",
+      zoomed ? "true" : "false"
+    );
+
+    discoveryZoomButton.setAttribute(
+      "aria-label",
+      zoomed
+        ? "Réduire le détail"
+        : "Agrandir le détail"
+    );
+
+    discoveryZoomButton.title =
+      zoomed
+        ? "Réduire le détail"
+        : "Agrandir le détail";
   }
 );
 
