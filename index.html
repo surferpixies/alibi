@@ -269,13 +269,32 @@
           </div>
 
           <div class="scene-discovery" id="scene-discovery" hidden>
-            <div class="discovery-visual">
+            <div class="discovery-visual" id="discovery-visual">
               <img
-                id="discovery-image"
+                id="discovery-detail-image"
+                class="discovery-detail-image"
                 src=""
                 alt=""
+                hidden
               />
-              <div class="discovery-zoom-mark">⌕</div>
+
+              <div
+                id="discovery-zoom-layer"
+                class="discovery-zoom-layer"
+                role="img"
+                aria-label=""
+                hidden
+              ></div>
+
+              <button
+                id="discovery-zoom-btn"
+                class="discovery-zoom-btn"
+                type="button"
+                aria-label="Agrandir le détail"
+                title="Agrandir le détail"
+              >
+                ⌕
+              </button>
             </div>
 
             <div class="discovery-content">
