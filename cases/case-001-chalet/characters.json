@@ -8,7 +8,7 @@
     "relationship": "Conjointe de Mathieu",
     "summary": "Sa famille possède le chalet depuis plusieurs générations.",
     "firstStatement": null,
-    "portrait": "assets/images/cases/case-001-chalet/characters/elodie.svg",
+    "portrait": "assets/images/cases/case-001-chalet/characters/elodie.png",
     "portraitAlt": "Portrait de Élodie",
     "interactive": false
   },
@@ -21,7 +21,7 @@
     "relationship": "Père de Léa et Thomas",
     "summary": "Il connaît le chalet et le lac depuis des années.",
     "firstStatement": "Élodie n’est pas dans la chambre. Je pensais qu’elle était déjà dehors.",
-    "portrait": "assets/images/cases/case-001-chalet/characters/mathieu.svg",
+    "portrait": "assets/images/cases/case-001-chalet/characters/mathieu.png",
     "portraitAlt": "Portrait de Mathieu",
     "interactive": true
   },
@@ -34,7 +34,7 @@
     "relationship": "Conjointe de David",
     "summary": "Amie du couple depuis longtemps.",
     "firstStatement": "Le canot était encore là assez tard hier soir. J’en suis presque certaine.",
-    "portrait": "assets/images/cases/case-001-chalet/characters/camille.svg",
+    "portrait": "assets/images/cases/case-001-chalet/characters/camille.png",
     "portraitAlt": "Portrait de Camille",
     "interactive": true
   },
@@ -47,7 +47,7 @@
     "relationship": "Conjoint de Camille",
     "summary": "Il est venu plusieurs fois au chalet.",
     "firstStatement": "J’ai entendu le cri moi aussi. Quand je suis sorti, Alex était déjà dehors.",
-    "portrait": "assets/images/cases/case-001-chalet/characters/david.svg",
+    "portrait": "assets/images/cases/case-001-chalet/characters/david.png",
     "portraitAlt": "Portrait de David",
     "interactive": true
   },
@@ -60,7 +60,7 @@
     "relationship": "Invité seul pour la semaine",
     "summary": "Deux de ses amis se sont joints au groupe pour la soirée de vendredi.",
     "firstStatement": "Je me suis réveillé tôt. J’étais près de la terrasse quand j’ai entendu le cri.",
-    "portrait": "assets/images/cases/case-001-chalet/characters/alex.svg",
+    "portrait": "assets/images/cases/case-001-chalet/characters/alex.png",
     "portraitAlt": "Portrait de Alex",
     "interactive": true
   },
@@ -73,7 +73,7 @@
     "relationship": "Fille d’Élodie et Mathieu",
     "summary": "Elle observe beaucoup ce qui se passe autour d’elle.",
     "firstStatement": null,
-    "portrait": "assets/images/cases/case-001-chalet/characters/lea.svg",
+    "portrait": "assets/images/cases/case-001-chalet/characters/lea.png",
     "portraitAlt": "Portrait de Léa",
     "interactive": false
   },
@@ -86,7 +86,7 @@
     "relationship": "Fils d’Élodie et Mathieu",
     "summary": "Il était couché avant la fin de la soirée.",
     "firstStatement": null,
-    "portrait": "assets/images/cases/case-001-chalet/characters/thomas.svg",
+    "portrait": "assets/images/cases/case-001-chalet/characters/thomas.png",
     "portraitAlt": "Portrait de Thomas",
     "interactive": false
   },
@@ -99,7 +99,7 @@
     "relationship": "Fils de Camille et David",
     "summary": "Il prend souvent des photos avec sa tablette.",
     "firstStatement": null,
-    "portrait": "assets/images/cases/case-001-chalet/characters/nathan.svg",
+    "portrait": "assets/images/cases/case-001-chalet/characters/nathan.png",
     "portraitAlt": "Portrait de Nathan",
     "interactive": false
   },
@@ -112,7 +112,7 @@
     "relationship": "Invité vendredi soir",
     "summary": "Sociable, il a pris plusieurs photos et vidéos pendant la soirée.",
     "firstStatement": null,
-    "portrait": "assets/images/cases/case-001-chalet/characters/maxime.svg",
+    "portrait": "assets/images/cases/case-001-chalet/characters/maxime.png",
     "portraitAlt": "Portrait de Maxime",
     "interactive": false
   },
@@ -125,7 +125,7 @@
     "relationship": "Invitée vendredi soir",
     "summary": "Elle connaît moins bien le reste du groupe et est repartie pendant la nuit.",
     "firstStatement": null,
-    "portrait": "assets/images/cases/case-001-chalet/characters/julie.svg",
+    "portrait": "assets/images/cases/case-001-chalet/characters/julie.png",
     "portraitAlt": "Portrait de Julie",
     "interactive": false
   }
