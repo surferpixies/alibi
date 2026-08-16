@@ -1878,3 +1878,10 @@ img {
 .person-portrait {
   flex: 0 0 auto;
 }
+
+
+/* v0.8.2 — portrait cache busting / load diagnostics */
+.portrait-load-error {
+  opacity: .38;
+  outline: 1px dashed rgba(255,255,255,.24);
+}
