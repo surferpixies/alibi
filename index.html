@@ -269,12 +269,33 @@
           </div>
 
           <div class="scene-discovery" id="scene-discovery" hidden>
-            <p class="discovery-kicker">OBSERVATION</p>
-            <h4 id="discovery-title"></h4>
-            <p id="discovery-text"></p>
-            <button id="close-discovery-btn" class="secondary-btn" type="button">
-              Continuer l’examen
-            </button>
+            <div class="discovery-visual">
+              <img
+                id="discovery-image"
+                src=""
+                alt=""
+              />
+              <div class="discovery-zoom-mark">⌕</div>
+            </div>
+
+            <div class="discovery-content">
+              <p class="discovery-kicker" id="discovery-kicker">OBSERVATION</p>
+              <h4 id="discovery-title"></h4>
+              <p id="discovery-text"></p>
+
+              <div
+                id="discovery-added"
+                class="discovery-added"
+                hidden
+              >
+                <span>✓</span>
+                Ajouté aux preuves
+              </div>
+
+              <button id="close-discovery-btn" class="secondary-btn" type="button">
+                Continuer l’examen
+              </button>
+            </div>
           </div>
 
           <button id="talk-to-people-btn" class="primary-btn next-action-btn" type="button" hidden>
