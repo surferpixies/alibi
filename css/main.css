@@ -819,3 +819,207 @@ img {
     width: min(300px, 72vw);
   }
 }
+
+
+/* v0.5 Enhanced cinematic splash */
+.splash-screen {
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 36%, rgba(41, 125, 206, 0.18), transparent 28%),
+    radial-gradient(circle at 18% 18%, rgba(255, 205, 67, 0.05), transparent 18%),
+    radial-gradient(circle at 82% 76%, rgba(115, 185, 255, 0.06), transparent 22%),
+    linear-gradient(180deg, #08131f 0%, #06101a 58%, #040a11 100%);
+}
+
+.splash-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.015), transparent 34%, rgba(255,255,255,0.01) 65%, transparent 100%);
+  pointer-events: none;
+}
+
+.splash-bg-words {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.bg-word {
+  position: absolute;
+  color: rgba(173, 195, 214, 0.11);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0;
+  filter: blur(0.2px);
+  animation: splashWordFade 1.3s ease forwards;
+}
+
+.word-1 {
+  top: 15%;
+  left: 8%;
+  font-size: clamp(1rem, 3.5vw, 1.4rem);
+  transform: rotate(-15deg);
+  animation-delay: 0.10s;
+}
+
+.word-2 {
+  top: 22%;
+  right: 10%;
+  font-size: clamp(1rem, 3.2vw, 1.5rem);
+  transform: rotate(12deg);
+  animation-delay: 0.28s;
+}
+
+.word-3 {
+  top: 38%;
+  left: 10%;
+  font-size: clamp(1.2rem, 4.5vw, 2rem);
+  transform: rotate(-10deg);
+  animation-delay: 0.45s;
+}
+
+.word-4 {
+  top: 46%;
+  right: 12%;
+  font-size: clamp(1rem, 3.5vw, 1.6rem);
+  transform: rotate(13deg);
+  animation-delay: 0.62s;
+}
+
+.word-5 {
+  bottom: 28%;
+  left: 7%;
+  font-size: clamp(1rem, 4vw, 1.7rem);
+  transform: rotate(-12deg);
+  animation-delay: 0.78s;
+}
+
+.word-6 {
+  bottom: 18%;
+  right: 14%;
+  font-size: clamp(1.05rem, 3.4vw, 1.45rem);
+  transform: rotate(9deg);
+  animation-delay: 0.94s;
+}
+
+.word-7 {
+  bottom: 10%;
+  left: 18%;
+  font-size: clamp(1rem, 3.8vw, 1.55rem);
+  transform: rotate(-8deg);
+  animation-delay: 1.08s;
+}
+
+.word-8 {
+  top: 58%;
+  left: 50%;
+  font-size: clamp(0.95rem, 3vw, 1.2rem);
+  transform: translateX(-50%) rotate(-6deg);
+  animation-delay: 1.22s;
+}
+
+.police-tape {
+  position: absolute;
+  left: -10%;
+  width: 120%;
+  padding: 10px 0;
+  background: linear-gradient(180deg, rgba(248, 205, 65, 0.78), rgba(228, 178, 26, 0.72));
+  color: rgba(18, 24, 32, 0.68);
+  font-size: 0.66rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-align: center;
+  text-transform: uppercase;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+  opacity: 0.17;
+  pointer-events: none;
+}
+
+.police-tape span {
+  display: block;
+  white-space: nowrap;
+}
+
+.tape-left {
+  top: 12%;
+  transform: rotate(-11deg);
+}
+
+.tape-right {
+  bottom: 16%;
+  transform: rotate(9deg);
+}
+
+.splash-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.splash-logo {
+  width: min(330px, 72vw);
+  margin: 0 auto 18px;
+  opacity: 0;
+  transform: translateY(10px) scale(0.985);
+  animation: splashLogoIn 0.75s ease 0.65s forwards;
+}
+
+.splash-tagline {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: splashTaglineIn 0.72s ease 1.05s forwards;
+}
+
+@keyframes splashWordFade {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.985);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes splashLogoIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes splashTaglineIn {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 580px) {
+  .police-tape {
+    font-size: 0.54rem;
+    letter-spacing: 0.12em;
+    padding: 8px 0;
+  }
+
+  .tape-left {
+    top: 14%;
+  }
+
+  .tape-right {
+    bottom: 18%;
+  }
+
+  .bg-word {
+    max-width: 40vw;
+  }
+}
