@@ -94,6 +94,22 @@ const splashScreen =
 const CASE_BASE =
   "cases/case-001-chalet";
 
+const ASSET_VERSION =
+  "082";
+
+function withAssetVersion(path) {
+  if (!path) {
+    return path;
+  }
+
+  const separator =
+    path.includes("?")
+      ? "&"
+      : "?";
+
+  return `${path}${separator}v=${ASSET_VERSION}`;
+}
+
 const state = {
   caseData: null,
   characters: [],
@@ -279,6 +295,32 @@ function renderCase() {
   renderTimeline();
   renderScene();
   updateObjective();
+}
+
+
+function attachPortraitFallbacks() {
+  document
+    .querySelectorAll(
+      ".person-portrait, .dialogue-portrait, .dialogue-mini-portrait"
+    )
+    .forEach(
+      (image) => {
+        image.addEventListener(
+          "error",
+          () => {
+            console.warn(
+              "Portrait introuvable:",
+              image.src
+            );
+
+            image.classList.add(
+              "portrait-load-error"
+            );
+          },
+          { once: true }
+        );
+      }
+    );
 }
 
 function renderScene() {
@@ -485,7 +527,7 @@ function renderPeople() {
           <div class="person-card-main">
             <img
               class="person-portrait"
-              src="${person.portrait}"
+              src="${withAssetVersion(person.portrait)}"
               alt="${person.portraitAlt || person.name}"
             />
 
@@ -549,6 +591,8 @@ function renderPeople() {
         );
       }
     );
+
+  attachPortraitFallbacks();
 }
 
 function getCharacterById(id) {
@@ -578,7 +622,7 @@ function addDialogueMessage(
     message.innerHTML = `
       <img
         class="dialogue-mini-portrait"
-        src="${character.portrait}"
+        src="${withAssetVersion(character.portrait)}"
         alt=""
       />
 
@@ -608,7 +652,9 @@ function openCharacterDialogue(personId) {
   }
 
   dialoguePortrait.src =
-    character.portrait;
+    withAssetVersion(
+      character.portrait
+    );
 
   dialoguePortrait.alt =
     character.portraitAlt ||
@@ -701,6 +747,8 @@ function openCharacterDialogue(personId) {
 
   document.body.style.overflow =
     "hidden";
+
+  attachPortraitFallbacks();
 }
 
 function closeCharacterDialogue() {
