@@ -134,11 +134,13 @@
             </div>
 
             <div class="case-content">
-              <p class="case-description">
-                Une semaine entre amis au bord d’un lac.
-                Une fête le vendredi soir.
-                Au réveil, le canot a disparu.
-              </p>
+              <div class="case-description teaser-lines" id="case-teaser">
+                <span>Une semaine au chalet entre amis.</span>
+                <span>Un vendredi soir bien arrosé.</span>
+                <span>Un cri te tire du sommeil.</span>
+                <span>Des pas se font entendre au loin.</span>
+                <span>Quelque chose s’est passé cette nuit.</span>
+              </div>
 
               <div class="case-meta">
                 <div class="meta-item">
@@ -195,26 +197,12 @@
 
         <h2>La semaine au chalet</h2>
 
-        <div class="intro-story">
+        <div class="intro-story intro-story-animated">
           <p class="story-time">SAMEDI — 8 H 17</p>
-
-          <p>
-            Un cri strident venu de loin te tire brusquement du sommeil.
-          </p>
-
-          <p>
-            Pendant quelques secondes, tout est silencieux.
-            Puis tu entends des pas précipités dehors.
-          </p>
-
-          <p>
-            Encore engourdi par la veille, tu te lèves et sors du chalet
-            pour comprendre ce qui se passe.
-          </p>
-
-          <p class="story-reveal">
-            Quelque chose ne va pas près du lac.
-          </p>
+          <p class="intro-line">Un cri strident venu de loin te tire du sommeil.</p>
+          <p class="intro-line">Des pas précipités se font entendre dehors.</p>
+          <p class="intro-line">Tu te lèves et suis les voix vers le lac.</p>
+          <p class="intro-line story-reveal">Quelque chose ne va pas.</p>
         </div>
 
         <button
@@ -253,53 +241,59 @@
         <section class="case-panel panel-active" data-panel="scene">
           <div class="panel-heading">
             <p class="panel-kicker">SAMEDI — 8 H 17</p>
-            <h3>La scène</h3>
-            <p>
-              En arrivant au quai, tu comprends ce qui a provoqué le cri :
-              le canot qui était attaché ici hier soir a disparu.
-              La corde est toujours nouée au poteau.
+            <h3>Le quai</h3>
+            <p id="scene-intro">
+              Chargement de la scène…
             </p>
           </div>
 
-          <div class="scene-card">
+          <div class="objective-card" id="scene-objective">
+            <span class="objective-label">OBJECTIF</span>
+            <strong>Examiner les environs du quai.</strong>
+            <span class="objective-progress" id="objective-progress">0 élément observé</span>
+          </div>
+
+          <div class="interactive-scene" id="interactive-scene">
             <img
+              id="scene-image"
               src="assets/images/cases/case-001-chalet/chalet-main.png"
-              alt="Vue du chalet et du lac"
+              alt="Vue du chalet, du quai et du lac"
             />
+            <div class="scene-shade"></div>
+            <div id="scene-hotspots" class="scene-hotspots"></div>
 
-            <div class="scene-card-content">
-              <span class="status-pill">SCÈNE ACTIVE</span>
-              <h4>Le quai</h4>
-              <p>
-                Le lac est calme. La corde du canot est toujours attachée
-                au poteau du quai.
-              </p>
-
-              <button class="secondary-btn" type="button">
-                Examiner la scène
-              </button>
+            <div class="scene-help">
+              <span>⌖</span>
+              <span>Touche les points pour examiner la scène.</span>
             </div>
           </div>
+
+          <div class="scene-discovery" id="scene-discovery" hidden>
+            <p class="discovery-kicker">OBSERVATION</p>
+            <h4 id="discovery-title"></h4>
+            <p id="discovery-text"></p>
+            <button id="close-discovery-btn" class="secondary-btn" type="button">
+              Continuer l’examen
+            </button>
+          </div>
+
+          <button id="talk-to-people-btn" class="primary-btn next-action-btn" type="button" hidden>
+            <span>Parler aux autres</span>
+            <span class="btn-arrow">→</span>
+          </button>
         </section>
 
         <!-- PERSONNES -->
         <section class="case-panel" data-panel="people">
           <div class="panel-heading">
-            <p class="panel-kicker">DOSSIER</p>
-            <h3>Personnes</h3>
+            <p class="panel-kicker">PERSONNES PRÉSENTES</p>
+            <h3>Autour du chalet</h3>
             <p>
-              Les personnes présentes au chalet apparaîtront ici au fur et
-              à mesure de l’enquête.
+              Écoute ce que chacun sait pour commencer à reconstruire la nuit.
             </p>
           </div>
 
-          <div class="placeholder-card">
-            <span class="placeholder-icon">👥</span>
-            <strong>Personnages à venir</strong>
-            <p>
-              On branchera bientôt les profils, relations et témoignages.
-            </p>
-          </div>
+          <div id="people-grid" class="people-grid"></div>
         </section>
 
         <!-- PREUVES -->
@@ -308,17 +302,16 @@
             <p class="panel-kicker">DOSSIER</p>
             <h3>Preuves</h3>
             <p>
-              Les photos, objets, messages, témoignages et analyses seront
-              centralisés ici.
+              Les éléments observés et confirmés sont conservés ici.
             </p>
           </div>
 
-          <div class="placeholder-card">
-            <span class="placeholder-icon">📁</span>
-            <strong>Aucune preuve classée</strong>
-            <p>
-              Examine la scène pour commencer à remplir le dossier.
-            </p>
+          <div id="evidence-list" class="evidence-list">
+            <div class="placeholder-card" id="evidence-empty">
+              <span class="placeholder-icon">📁</span>
+              <strong>Aucune preuve classée</strong>
+              <p>Examine la scène pour commencer à remplir le dossier.</p>
+            </div>
           </div>
         </section>
 
@@ -328,28 +321,11 @@
             <p class="panel-kicker">RECONSTRUCTION</p>
             <h3>Chronologie</h3>
             <p>
-              Les faits confirmés et les déclarations seront placés ici
-              dans l’ordre du temps.
+              Les faits confirmés apparaissent ici au fur et à mesure.
             </p>
           </div>
 
-          <div class="timeline">
-            <div class="timeline-item confirmed">
-              <span class="timeline-time">VEN. SOIR</span>
-              <div>
-                <strong>Fête au chalet</strong>
-                <p>Plusieurs amis se joignent au groupe.</p>
-              </div>
-            </div>
-
-            <div class="timeline-item confirmed">
-              <span class="timeline-time">SAM. 8:17</span>
-              <div>
-                <strong>Le canot est porté disparu</strong>
-                <p>Premier fait confirmé du dossier.</p>
-              </div>
-            </div>
-          </div>
+          <div class="timeline" id="timeline-list"></div>
         </section>
 
         <!-- NOTES -->
