@@ -1837,3 +1837,44 @@ img {
     height: 72px;
   }
 }
+
+
+/* v0.8.1 — stable scene interaction / PNG portraits */
+
+.scene-discovery {
+  overflow: visible;
+  padding: 0;
+  margin-top: 14px;
+  border: 1px solid rgba(116, 186, 255, .16);
+  border-radius: 16px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(18, 35, 52, .97),
+      rgba(9, 21, 33, .97)
+    );
+  box-shadow: 0 12px 26px rgba(0,0,0,.16);
+}
+
+.scene-discovery .discovery-content {
+  padding: 16px;
+}
+
+.discovery-visual,
+.discovery-zoom-layer,
+.discovery-detail-image,
+.discovery-zoom-btn {
+  display: none !important;
+}
+
+.person-portrait,
+.dialogue-portrait,
+.dialogue-mini-portrait {
+  display: block;
+  object-fit: cover;
+  background: #1b2b3a;
+}
+
+.person-portrait {
+  flex: 0 0 auto;
+}
