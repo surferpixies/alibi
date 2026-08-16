@@ -7,7 +7,10 @@
     "status": "introuvable",
     "relationship": "Conjointe de Mathieu",
     "summary": "Sa famille possède le chalet depuis plusieurs générations.",
-    "firstStatement": null
+    "firstStatement": null,
+    "portrait": "assets/images/cases/case-001-chalet/characters/elodie.svg",
+    "portraitAlt": "Portrait de Élodie",
+    "interactive": false
   },
   {
     "id": "mathieu",
@@ -17,7 +20,10 @@
     "status": "présent",
     "relationship": "Père de Léa et Thomas",
     "summary": "Il connaît le chalet et le lac depuis des années.",
-    "firstStatement": "Élodie n’est pas dans la chambre. Je pensais qu’elle était déjà dehors."
+    "firstStatement": "Élodie n’est pas dans la chambre. Je pensais qu’elle était déjà dehors.",
+    "portrait": "assets/images/cases/case-001-chalet/characters/mathieu.svg",
+    "portraitAlt": "Portrait de Mathieu",
+    "interactive": true
   },
   {
     "id": "camille",
@@ -27,7 +33,10 @@
     "status": "présente",
     "relationship": "Conjointe de David",
     "summary": "Amie du couple depuis longtemps.",
-    "firstStatement": "Le canot était encore là assez tard hier soir. J’en suis presque certaine."
+    "firstStatement": "Le canot était encore là assez tard hier soir. J’en suis presque certaine.",
+    "portrait": "assets/images/cases/case-001-chalet/characters/camille.svg",
+    "portraitAlt": "Portrait de Camille",
+    "interactive": true
   },
   {
     "id": "david",
@@ -37,7 +46,10 @@
     "status": "présent",
     "relationship": "Conjoint de Camille",
     "summary": "Il est venu plusieurs fois au chalet.",
-    "firstStatement": "J’ai entendu le cri moi aussi. Quand je suis sorti, Alex était déjà dehors."
+    "firstStatement": "J’ai entendu le cri moi aussi. Quand je suis sorti, Alex était déjà dehors.",
+    "portrait": "assets/images/cases/case-001-chalet/characters/david.svg",
+    "portraitAlt": "Portrait de David",
+    "interactive": true
   },
   {
     "id": "alex",
@@ -47,7 +59,10 @@
     "status": "présent",
     "relationship": "Invité seul pour la semaine",
     "summary": "Deux de ses amis se sont joints au groupe pour la soirée de vendredi.",
-    "firstStatement": "Je me suis réveillé tôt. J’étais près de la terrasse quand j’ai entendu le cri."
+    "firstStatement": "Je me suis réveillé tôt. J’étais près de la terrasse quand j’ai entendu le cri.",
+    "portrait": "assets/images/cases/case-001-chalet/characters/alex.svg",
+    "portraitAlt": "Portrait de Alex",
+    "interactive": true
   },
   {
     "id": "lea",
@@ -57,7 +72,10 @@
     "status": "présente",
     "relationship": "Fille d’Élodie et Mathieu",
     "summary": "Elle observe beaucoup ce qui se passe autour d’elle.",
-    "firstStatement": null
+    "firstStatement": null,
+    "portrait": "assets/images/cases/case-001-chalet/characters/lea.svg",
+    "portraitAlt": "Portrait de Léa",
+    "interactive": false
   },
   {
     "id": "thomas",
@@ -67,7 +85,10 @@
     "status": "présent",
     "relationship": "Fils d’Élodie et Mathieu",
     "summary": "Il était couché avant la fin de la soirée.",
-    "firstStatement": null
+    "firstStatement": null,
+    "portrait": "assets/images/cases/case-001-chalet/characters/thomas.svg",
+    "portraitAlt": "Portrait de Thomas",
+    "interactive": false
   },
   {
     "id": "nathan",
@@ -77,6 +98,35 @@
     "status": "présent",
     "relationship": "Fils de Camille et David",
     "summary": "Il prend souvent des photos avec sa tablette.",
-    "firstStatement": null
+    "firstStatement": null,
+    "portrait": "assets/images/cases/case-001-chalet/characters/nathan.svg",
+    "portraitAlt": "Portrait de Nathan",
+    "interactive": false
+  },
+  {
+    "id": "maxime",
+    "name": "Maxime",
+    "age": 40,
+    "role": "Ami d’Alex",
+    "status": "parti",
+    "relationship": "Invité vendredi soir",
+    "summary": "Sociable, il a pris plusieurs photos et vidéos pendant la soirée.",
+    "firstStatement": null,
+    "portrait": "assets/images/cases/case-001-chalet/characters/maxime.svg",
+    "portraitAlt": "Portrait de Maxime",
+    "interactive": false
+  },
+  {
+    "id": "julie",
+    "name": "Julie",
+    "age": 38,
+    "role": "Amie d’Alex",
+    "status": "partie",
+    "relationship": "Invitée vendredi soir",
+    "summary": "Elle connaît moins bien le reste du groupe et est repartie pendant la nuit.",
+    "firstStatement": null,
+    "portrait": "assets/images/cases/case-001-chalet/characters/julie.svg",
+    "portraitAlt": "Portrait de Julie",
+    "interactive": false
   }
 ]

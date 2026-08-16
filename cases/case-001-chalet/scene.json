@@ -16,11 +16,8 @@
       "evidence": "ev-rope",
       "title": "La corde",
       "observation": "Elle est toujours solidement nouée au poteau, mais son autre extrémité pend dans l’eau. Le canot ne s’est donc pas simplement détaché tout seul.",
-      "detailImage": "assets/images/cases/case-001-chalet/details/rope-detail.png",
-      "detailPosition": "62% 76%",
-      "detailMode": "image",
-      "fallbackImage": "assets/images/cases/case-001-chalet/chalet-main.png",
-      "fallbackPosition": "60% 77%"
+      "detailImage": "assets/images/cases/case-001-chalet/chalet-main.png",
+      "detailPosition": "60% 77%"
     },
     {
       "id": "hotspot-footprints",
@@ -31,11 +28,8 @@
       "evidence": "ev-muddy-footprints",
       "title": "Empreintes boueuses",
       "observation": "Plusieurs marques boueuses apparaissent sur les planches près du bord. Certaines semblent assez nettes pour distinguer un motif de semelle.",
-      "detailImage": "assets/images/cases/case-001-chalet/details/footprints-detail.png",
-      "detailPosition": "70% 74%",
-      "detailMode": "image",
-      "fallbackImage": "assets/images/cases/case-001-chalet/chalet-main.png",
-      "fallbackPosition": "71% 72%"
+      "detailImage": "assets/images/cases/case-001-chalet/chalet-main.png",
+      "detailPosition": "71% 72%"
     },
     {
       "id": "hotspot-fabric",
@@ -46,11 +40,8 @@
       "evidence": "ev-fabric",
       "title": "Un morceau de tissu",
       "observation": "Un petit morceau de tissu est coincé sur une écharde au bord du quai. Impossible pour l’instant de savoir à qui il appartient.",
-      "detailImage": "assets/images/cases/case-001-chalet/details/fabric-detail.png",
-      "detailPosition": "77% 70%",
-      "detailMode": "image",
-      "fallbackImage": "assets/images/cases/case-001-chalet/chalet-main.png",
-      "fallbackPosition": "77% 68%"
+      "detailImage": "assets/images/cases/case-001-chalet/chalet-main.png",
+      "detailPosition": "77% 68%"
     },
     {
       "id": "hotspot-fire",
@@ -60,11 +51,8 @@
       "kind": "observation",
       "title": "Le feu de la veille",
       "observation": "Le foyer est presque éteint. Quelques braises subsistent encore sous les cendres. Pour l’instant, tu ne sais pas si ce détail est important.",
-      "detailImage": "assets/images/cases/case-001-chalet/details/firepit-detail.png",
-      "detailPosition": "31% 68%",
-      "detailMode": "image",
-      "fallbackImage": "assets/images/cases/case-001-chalet/chalet-main.png",
-      "fallbackPosition": "31% 68%"
+      "detailImage": "assets/images/cases/case-001-chalet/chalet-main.png",
+      "detailPosition": "31% 68%"
     }
   ]
 }

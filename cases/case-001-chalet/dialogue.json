@@ -1,0 +1,114 @@
+{
+  "mathieu": {
+    "opening": [
+      {
+        "speaker": "mathieu",
+        "text": "Élodie n’est pas dans la chambre. Je pensais qu’elle était déjà dehors."
+      },
+      {
+        "speaker": "player",
+        "text": "Tu l’as vue pour la dernière fois quand ?"
+      },
+      {
+        "speaker": "mathieu",
+        "text": "Hier soir. Après ça… je suis allé me coucher. Je ne sais plus exactement à quelle heure."
+      }
+    ],
+    "topics": [
+      {
+        "id": "last-seen",
+        "label": "La dernière fois qu’il a vu Élodie",
+        "reply": "Elle était encore près du feu quand je suis rentré. On avait tous bu un peu. Je ne peux pas te donner une heure précise."
+      },
+      {
+        "id": "canoe",
+        "label": "Le canot",
+        "reply": "Je ne l’ai pas utilisé hier. Élodie non plus, à ma connaissance."
+      }
+    ]
+  },
+  "camille": {
+    "opening": [
+      {
+        "speaker": "camille",
+        "text": "Le canot était encore là assez tard hier soir. J’en suis presque certaine."
+      },
+      {
+        "speaker": "player",
+        "text": "Pourquoi tu t’en souviens ?"
+      },
+      {
+        "speaker": "camille",
+        "text": "Je suis descendue chercher une couverture sur une chaise près du quai."
+      }
+    ],
+    "topics": [
+      {
+        "id": "canoe-time",
+        "label": "Quand elle a vu le canot",
+        "reply": "Je dirais après minuit… mais je préfère ne pas inventer une heure. Il était attaché."
+      },
+      {
+        "id": "party",
+        "label": "La fin de la soirée",
+        "reply": "Ça s’est vidé tranquillement. Les enfants dormaient déjà. Certains sont restés autour du feu plus longtemps."
+      }
+    ]
+  },
+  "david": {
+    "opening": [
+      {
+        "speaker": "david",
+        "text": "J’ai entendu le cri moi aussi. Quand je suis sorti, Alex était déjà dehors."
+      },
+      {
+        "speaker": "player",
+        "text": "Tu as vu quelque chose d’autre ?"
+      },
+      {
+        "speaker": "david",
+        "text": "Non. Juste du mouvement vers le lac."
+      }
+    ],
+    "topics": [
+      {
+        "id": "cry",
+        "label": "Le cri du matin",
+        "reply": "C’était loin. Assez aigu. Je ne saurais pas dire si ça venait de la rive ou de l’autre côté du lac."
+      },
+      {
+        "id": "alex",
+        "label": "Alex déjà dehors",
+        "reply": "Oui. Il était près de la terrasse quand je suis arrivé. Ça m’a surpris, mais il m’a dit qu’il était réveillé tôt."
+      }
+    ]
+  },
+  "alex": {
+    "opening": [
+      {
+        "speaker": "alex",
+        "text": "Je me suis réveillé tôt. J’étais près de la terrasse quand j’ai entendu le cri."
+      },
+      {
+        "speaker": "player",
+        "text": "Pourquoi tu étais déjà dehors ?"
+      },
+      {
+        "speaker": "alex",
+        "text": "Je dormais mal. Je suis sorti prendre l’air."
+      }
+    ],
+    "topics": [
+      {
+        "id": "morning",
+        "label": "Pourquoi il était dehors",
+        "reply": "Rien de spécial. J’avais la tête lourde après la soirée et je n’arrivais plus à dormir."
+      },
+      {
+        "id": "guests",
+        "label": "Maxime et Julie",
+        "reply": "Maxime est reparti tard. Julie est partie avant lui. Je ne pourrais pas te dire les heures exactes sans vérifier."
+      }
+    ]
+  }
+}
