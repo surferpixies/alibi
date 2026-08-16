@@ -1336,3 +1336,107 @@ img {
     height: 32px;
   }
 }
+
+
+/* v0.7 — Visual clue cards */
+
+.scene-discovery {
+  overflow: hidden;
+  padding: 0;
+}
+
+.discovery-visual {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  background: #08121d;
+}
+
+.discovery-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.35);
+  filter:
+    contrast(1.04)
+    saturate(0.88)
+    brightness(0.88);
+}
+
+.discovery-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(2, 8, 13, 0.02),
+      rgba(2, 8, 13, 0.18)
+    );
+  pointer-events: none;
+}
+
+.discovery-zoom-mark {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 2;
+
+  display: grid;
+  place-items: center;
+
+  width: 34px;
+  height: 34px;
+
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 50%;
+
+  color: rgba(255,255,255,0.86);
+  background: rgba(5, 13, 21, 0.62);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.discovery-content {
+  padding: 17px;
+}
+
+.discovery-added {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  margin:
+    2px
+    0
+    15px;
+
+  padding:
+    7px
+    10px;
+
+  border:
+    1px solid
+    rgba(113, 203, 157, 0.18);
+
+  border-radius: 999px;
+
+  color: #a8e9c8;
+  background:
+    rgba(70, 167, 118, 0.08);
+
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.discovery-added[hidden] {
+  display: none;
+}
+
+@media (max-width: 580px) {
+  .discovery-visual {
+    height: 155px;
+  }
+}
