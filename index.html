@@ -1,426 +1,463 @@
-<!DOCTYPE html>
-<html lang="fr">
+<!doctype html>
+<html lang="fr-CA">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>ALIBI</title>
-
-  <meta
-    name="description"
-    content="ALIBI — Une enquête. Plusieurs jours. Tout le monde a une histoire."
-  />
-
-  <link rel="preload" as="image" href="assets/images/logo/alibi-logo.png?v=044" />
-
-
-  <!-- App / browser icons -->
-  <link
-    rel="icon"
-    type="image/png"
-    href="assets/images/logo/favicon-32.png?v=044"
-  />
-  <link
-    rel="shortcut icon"
-    type="image/png"
-    href="assets/images/logo/favicon-32.png?v=044"
-  />
-  <link
-    rel="apple-touch-icon"
-    sizes="180x180"
-    href="assets/images/logo/apple-touch-icon.png?v=044"
-  />
-  <link rel="manifest" href="manifest.webmanifest?v=041" />
-
-  <meta name="theme-color" content="#07101b" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta
-    name="apple-mobile-web-app-status-bar-style"
-    content="black-translucent"
-  />
-  <meta name="apple-mobile-web-app-title" content="ALIBI" />
-
-  <link rel="stylesheet" href="css/main.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#eef8e7">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Énergie">
+  <title>Énergie</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css?v=3.46.0">
 </head>
-
 <body>
-
-  <!-- SPLASH SCREEN -->
-  <section id="splash-screen" class="splash-screen" aria-hidden="false">
-    <div class="splash-bg-words" aria-hidden="true">
-      <span class="bg-word word-1">ADN</span>
-      <span class="bg-word word-2">Témoin</span>
-      <span class="bg-word word-3">Preuves</span>
-      <span class="bg-word word-4">Photo</span>
-      <span class="bg-word word-5">Disparition</span>
-      <span class="bg-word word-6">Indice</span>
-      <span class="bg-word word-7">Chronologie</span>
-      <span class="bg-word word-8">Interrogatoire</span>
+  <div id="splashScreen" class="splash-screen" aria-hidden="true">
+    <div class="splash-brand">
+      <span class="splash-logo" aria-hidden="true">
+        <img src="assets/icon.svg" alt="">
+      </span>
+      <strong>Énergie</strong>
+      <span class="splash-subtitle"><span>Repas</span><i>•</i><span>Ressentis</span><i>•</i><span class="splash-subtitle-result">Observations</span></span>
+      <div id="splashDaily" class="splash-daily" hidden>
+        <p id="splashStatus" class="splash-status"></p>
+        <div class="splash-tip">
+          <span id="splashTipLabel" class="splash-tip-label"></span>
+          <p id="splashTipText"></p>
+        </div>
+        <div class="splash-app-hint">
+          <div class="splash-app-hint-heading">
+            <span id="splashAppHintIcon" class="splash-app-hint-icon" aria-hidden="true"></span>
+            <span id="splashAppHintLabel" class="splash-tip-label"></span>
+          </div>
+          <p id="splashAppHintText"></p>
+        </div>
+      </div>
     </div>
+  </div>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="header-brand-block">
+        <h1 class="brand-title">
+          <img class="brand-icon" src="assets/icon.svg" alt="Icône Énergie">
+          <span>Énergie</span>
+        </h1>
+        <div class="header-date-line">
+          <p class="eyebrow" id="todayLabel" style="display:none"></p>
+        </div>
+        
+                </div>
+      <span id="livingHeaderIcon" class="living-header-icon weather-icon weather-icon--header brand-weather" role="img" aria-label="Ambiance du jour"></span>
+      <div class="header-actions"><span id="syncBadge" class="sync-badge">Local</span><button class="icon-button" id="themeToggle" aria-label="Changer le thème">☾</button></div>
+    </header>
+    <main id="app" tabindex="-1"></main>
+    <nav class="bottom-nav" aria-label="Navigation principale">
+      <button data-view="today" class="nav-item active"><span id="todayNavIcon" class="weather-icon weather-icon--nav" role="img" aria-label="Ambiance du jour"></span><small>Journal</small></button>
+      <button data-view="history" class="nav-item"><span>📖</span><small>Historique</small></button>
+      <button data-view="brain" class="nav-item"><span>🧠</span><small>Cerveau</small></button>
+      <button data-view="insights" class="nav-item"><span>📊</span><small>Observations</small></button>
+      <button data-view="followup" class="nav-item" hidden><span>📝</span><small>Suivi</small></button>
+      <button data-view="profile" class="nav-item"><span>⚙️</span><small>Profil</small></button>
+    </nav>
+  </div>
 
-    <div class="police-tape tape-left" aria-hidden="true">
-      <span>SCÈNE SENSIBLE • PREUVES • NE PAS FRANCHIR</span>
+  <dialog id="mealDialog">
+    <form id="mealForm" class="dialog-card" autocomplete="off">
+      <div class="dialog-header"><div><p class="eyebrow">Mon repas</p><h2 id="mealDialogTitle">Ajouter un repas</h2></div><button type="button" class="icon-button close-dialog" aria-label="Fermer">✕</button></div>
+      <input type="hidden" id="mealId">
+      <input type="hidden" id="mealType" value="Déjeuner">
+      <div class="meal-dialog-type" aria-live="polite">
+        <span id="mealDialogTypeIcon" class="meal-dialog-type-icon" aria-hidden="true">🍳</span>
+        <div><span class="muted small">Type de repas</span><strong id="mealDialogTypeLabel">Déjeuner</strong></div>
+      </div>
+      <div class="meal-copy-actions">
+        <button type="button" class="secondary small meal-copy-button" id="copyYesterdayBreakfast">🍳 Copier le déjeuner d'hier</button>
+        <button type="button" class="secondary small meal-copy-button" id="copyYesterdayDinner">🍱 Restants : copier le souper d'hier</button>
+      </div>
+      <section id="favoriteQuickSection" class="meal-quick-picks" hidden>
+        <div class="meal-quick-picks-heading"><span>⭐</span><div><strong>Mes favoris</strong><small>Un toucher pour remplir le repas</small></div></div>
+        <div id="favoriteQuickList" class="meal-quick-picks-list"></div>
+      </section>
+      <label id="favoriteMealLabel" class="visually-hidden">Choisir un repas favori
+        <select id="favoriteMealSelect" autocomplete="off" tabindex="-1"><option value="">Choisir un favori…</option></select>
+      </label>
+      <section id="recentFoodsSection" class="recent-foods-section" hidden>
+        <div class="recent-foods-heading"><span>🕒</span><strong id="recentFoodsHeading">Derniers repas</strong></div>
+        <div id="recentFoodsList" class="recent-foods-list"></div>
+      </section>
+      <label class="meal-time-row" for="mealTime"><span class="meal-time-label"><span aria-hidden="true">🕒</span><span>Heure</span></span><input id="mealTime" type="time" name="energie_meal_clock_value" autocomplete="one-time-code" required></label>
+      <div class="meal-description-field">
+        <div class="meal-description-label-row"><label for="mealDescription">Ce que tu as mangé ou bu</label><button type="button" id="mealFavoriteToggle" class="meal-favorite-star" aria-pressed="false" aria-label="Ajouter ce repas aux favoris" title="Ajouter ce repas aux favoris"><span class="meal-favorite-toggle-icon" aria-hidden="true">☆</span></button></div>
+        <div class="meal-description-composer">
+          <textarea id="mealDescription" name="energie_meal_description_value" autocomplete="one-time-code" autocapitalize="sentences" rows="4" placeholder="Ex. bagel, œufs et café" required></textarea>
+          <div class="meal-description-toolbar">
+            <div class="meal-composer-actions">
+              <label class="meal-composer-action meal-photo-action"><input id="mealPhoto" type="file" accept="image/*" capture="environment"><span aria-hidden="true">📷</span><strong>Photo IA</strong></label>
+              <button type="button" class="meal-composer-action meal-barcode-action" id="openBarcodeScanner"><span aria-hidden="true">▥</span><strong>Scanner</strong></button>
+            </div>
+            <small id="mealAiPhotoStatus" class="meal-ai-photo-status" role="status" aria-live="polite">La description IA doit être vérifiée et corrigée au besoin.</small>
+          </div>
+        </div>
+        <p class="meal-precision-hint"><span aria-hidden="true">💡</span><span id="mealPrecisionHintText">Plus ta description est précise — ingrédients, sauces et accompagnements — plus les observations d’Énergie seront pertinentes.</span></p>
+        <small id="mealFavoriteFeedback" class="meal-favorite-feedback" role="status" aria-live="polite" hidden></small>
+        <div id="mealAiSuggestion" class="meal-ai-suggestion" hidden>
+          <div><span aria-hidden="true">✨</span><span><strong>Suggestion de l’IA</strong><small id="mealAiSuggestionText"></small></span></div>
+          <div><button type="button" id="useMealAiSuggestion" class="secondary small">Utiliser</button><button type="button" id="dismissMealAiSuggestion" class="text-button small">Ignorer</button></div>
+        </div>
+        <div id="photoPreviewWrap" class="photo-preview-wrap meal-photo-preview" hidden><img id="photoPreview" alt="Aperçu du repas"><button type="button" id="removePhoto" class="secondary small">Retirer la photo</button></div>
+      </div>
+      <section id="mealCompositionReview" class="meal-composition-review" hidden aria-live="polite">
+        <div id="mealCompositionSummary"></div>
+        <div id="mealCompositionActions" class="meal-composition-actions" hidden>
+          <button type="button" class="secondary small" id="completeMealDescription">Préciser le repas</button>
+          <button type="button" class="text-button" id="keepMealDescription">Continuer ainsi</button>
+        </div>
+      </section>
+      <details id="eatingReasonDetails" class="eating-reason-card" open>
+        <summary><span aria-hidden="true">💭</span><span><strong>Qu’est-ce qui t’a amené à manger?</strong><small id="eatingReasonSummary">Facultatif · plusieurs réponses possibles</small></span><b aria-hidden="true">›</b></summary>
+        <div class="eating-reason-content">
+          <p class="muted small">Il n’y a pas de bonne ou de mauvaise réponse. Choisis simplement ce qui correspond à ce moment.</p>
+          <div class="eating-reason-grid">
+            <label><input type="checkbox" name="eatingReason" value="hunger"><span>😋 J’avais faim</span></label>
+            <label><input type="checkbox" name="eatingReason" value="routine"><span>🕒 C’était l’heure de manger</span></label>
+            <label><input type="checkbox" name="eatingReason" value="boredom"><span>😴 Je m’ennuyais</span></label>
+            <label><input type="checkbox" name="eatingReason" value="pleasure"><span>😋 Par gourmandise</span></label>
+            <label class="eating-reason-other-choice"><input type="checkbox" name="eatingReason" value="other"><span>✍️ Autre raison <small>(énergie, activité, émotion, moment social, etc.)</small></span></label>
+          </div>
+          <label id="eatingReasonOtherWrap" class="eating-reason-other" hidden>Précise la raison<input id="eatingReasonOther" type="text" maxlength="160" autocomplete="off" placeholder="Ex. pour avoir de l’énergie, après une activité…"></label>
+        </div>
+      </details>
+      <details id="mealFeelingsDetails" class="meal-feelings-card">
+        <summary>
+          <span class="meal-feelings-card-icon" aria-hidden="true">😊</span>
+          <span class="meal-feelings-card-copy"><strong>Ressentis avant et après</strong><span id="mealFeelingsCollapsedPreview" class="meal-feelings-collapsed-preview"><small>Aucun ressenti</small></span></span>
+          <b class="meal-feelings-chevron" aria-hidden="true">›</b>
+        </summary>
+        <div class="meal-feelings-card-content">
+          <section class="meal-feeling-period meal-feeling-period-before">
+            <div class="meal-feeling-period-head"><div><span>Avant le repas</span><strong id="beforeFeelingCount">Non consigné</strong></div></div>
+            <div id="beforeFeelingSelectedPreview" class="meal-feeling-selected-preview"><span class="meal-feeling-empty">Aucun ressenti</span></div>
+            <details id="beforeFeelingEditor" class="meal-feeling-editor">
+              <summary class="meal-feeling-action"><span aria-hidden="true">＋</span><strong id="beforeFeelingActionLabel">Ajouter les ressentis avant</strong><b aria-hidden="true">›</b></summary>
+              <fieldset class="feeling-fieldset meal-before-feelings"><legend>Ressentis avant <span class="muted tiny">(facultatif)</span></legend><p class="muted small">Sélectionne ce que tu ressens maintenant et indique l’intensité de chaque élément.</p><label class="feeling-search" for="beforeFeelingSearch"><span aria-hidden="true">🔎</span><input id="beforeFeelingSearch" type="search" autocomplete="off" placeholder="Rechercher un ressenti…"><button id="clearBeforeFeelingSearch" type="button" aria-label="Effacer la recherche" hidden>×</button></label><div id="beforeFeelingTags" class="feeling-tags scored-feeling-picker"></div><p id="beforeFeelingSearchEmpty" class="feeling-search-empty" hidden>Aucun ressenti trouvé.</p><div id="beforeFeelingQualityNotice" class="feeling-quality-notice" hidden></div></fieldset>
+            </details>
+          </section>
+          <section class="meal-feeling-period meal-feeling-period-after">
+            <div class="meal-feeling-period-head"><div><span>Après le repas</span><strong id="afterFeelingCount">Non consigné</strong></div></div>
+            <div id="afterFeelingSelectedPreview" class="meal-feeling-selected-preview"><span class="meal-feeling-empty">Aucun ressenti</span></div>
+            <button type="button" class="meal-feeling-action meal-feeling-after-button" id="mealFeelingButton" hidden><span aria-hidden="true">＋</span><strong>Ajouter les ressentis après</strong><b aria-hidden="true">›</b></button>
+            <p id="mealFeelingUnavailable" class="muted tiny">Disponible après avoir enregistré le repas.</p>
+          </section>
+          <div id="mealFeelingChanges" class="meal-feeling-changes-preview" hidden></div>
+        </div>
+      </details>
+      <div id="mealSuggestionWrap" class="meal-suggestion-wrap" hidden><button type="button" id="mealSuggestionToggle" class="meal-suggestion-toggle" aria-expanded="false">💡 Voir la suggestion</button><p id="mealSuggestionBody" class="meal-suggestion-body" hidden></p></div>
+      <details id="mealOptionalDetails" class="meal-optional-details">
+        <summary><span>＋</span><span><strong id="mealOptionalTitle">Notes</strong><small>Options facultatives</small></span></summary>
+        <div class="meal-optional-content">
+          <section id="mealNutritionSection" class="meal-nutrition-section" hidden>
+            <div class="meal-nutrition-heading"><div><span class="eyebrow">Nutrition facultative</span><strong>Estimation nutritionnelle</strong></div><button type="button" class="secondary small" id="estimateMealNutrition">Estimer</button></div>
+            <div class="nutrition-fields">
+              <label>Calories<input id="nutritionCalories" type="number" min="0" step="1" inputmode="decimal" placeholder="—"></label>
+              <label>Protéines (g)<input id="nutritionProtein" type="number" min="0" step="0.1" inputmode="decimal" placeholder="—"></label>
+              <label>Glucides (g)<input id="nutritionCarbs" type="number" min="0" step="0.1" inputmode="decimal" placeholder="—"></label>
+              <label>Lipides (g)<input id="nutritionFat" type="number" min="0" step="0.1" inputmode="decimal" placeholder="—"></label>
+              <label>Fibres (g)<input id="nutritionFiber" type="number" min="0" step="0.1" inputmode="decimal" placeholder="—"></label>
+              <label>Sucres (g)<input id="nutritionSugars" type="number" min="0" step="0.1" inputmode="decimal" placeholder="—"></label>
+              <label>Sodium (mg)<input id="nutritionSodium" type="number" min="0" step="1" inputmode="decimal" placeholder="—"></label>
+            </div>
+            <p id="nutritionEstimateNote" class="muted tiny">Estimation approximative basée sur une portion courante. Les recettes et portions réelles peuvent varier.</p>
+            <button type="button" class="text-button nutrition-clear" id="clearMealNutrition">Effacer les valeurs</button>
+          </section>
+          <label>Notes facultatives<textarea id="mealNotes" name="energie_meal_notes_value" autocomplete="one-time-code" autocapitalize="sentences" rows="2" placeholder="Contexte, digestion, humeur…"></textarea></label>
+        </div>
+      </details>
+      <div class="dialog-actions meal-form-actions"><button type="button" class="danger" id="deleteCurrentMeal" hidden>Supprimer</button><button type="submit" class="primary">Enregistrer le repas</button></div>
+    </form>
+  </dialog>
+
+
+
+  <dialog id="snackManagerDialog">
+    <section class="dialog-card snack-manager-card">
+      <div class="dialog-header"><div><p class="eyebrow">Aujourd’hui</p><h2>Mes collations</h2></div><button type="button" class="icon-button close-dialog" aria-label="Fermer">✕</button></div>
+      <div id="snackManagerList" class="snack-manager-list"></div>
+      <section class="quick-snack-section">
+        <label for="quickSnackDescription">Ajouter rapidement</label>
+        <div class="quick-snack-composer">
+          <textarea id="quickSnackDescription" rows="2" autocapitalize="sentences" autocomplete="off" placeholder="Ex. pomme et quelques amandes"></textarea>
+          <div class="quick-snack-toolbar">
+            <div>
+              <label class="meal-composer-action meal-photo-action"><input id="quickSnackPhoto" type="file" accept="image/*" capture="environment"><span aria-hidden="true">📷</span><strong>Photo IA</strong></label>
+              <button type="button" class="meal-composer-action meal-barcode-action" id="quickSnackBarcode"><span aria-hidden="true">▥</span><strong>Scanner</strong></button>
+            </div>
+            <small id="quickSnackAiStatus" role="status" aria-live="polite">Vérifie toujours la description proposée.</small>
+          </div>
+        </div>
+        <div id="quickSnackPhotoPreview" class="quick-snack-photo-preview" hidden><img id="quickSnackPhotoImage" alt="Aperçu de la collation"><button type="button" id="removeQuickSnackPhoto" class="text-button small">Retirer</button></div>
+        <button type="button" class="primary" id="saveQuickSnack" disabled>Ajouter la collation</button>
+      </section>
+      <div class="snack-manager-divider"><span>ou reprendre une collation</span></div>
+      <section class="recent-snacks-section">
+        <div class="recent-snacks-heading"><div><strong>Collations récentes</strong><small>Sélectionne une collation que tu reprends souvent</small></div><span aria-hidden="true">↻</span></div>
+        <div id="recentSnackList" class="recent-snack-list"></div>
+        <button type="button" class="secondary recent-snack-add" id="addSelectedSnack" disabled>Ajouter cette collation</button>
+      </section>
+      <div class="snack-manager-divider"><span>plus d’options</span></div>
+      <button type="button" class="secondary" id="addAnotherSnack">＋ Ajouter avec les ressentis et les détails</button>
+    </section>
+  </dialog>
+
+  <dialog id="barcodeDialog" class="barcode-dialog">
+    <div class="dialog-card barcode-dialog-card">
+      <div class="dialog-header"><div><p class="eyebrow">Ajout rapide</p><h2>Scanner un produit</h2></div><button type="button" class="icon-button" id="closeBarcodeScanner" aria-label="Fermer">✕</button></div>
+      <p class="muted small">Place le code-barres dans le cadre. Énergie récupère uniquement le nom du produit, que tu peux modifier avant de l’ajouter.</p>
+      <div id="barcodeCameraPanel" class="barcode-camera-panel">
+        <video id="barcodeVideo" playsinline muted aria-label="Aperçu de la caméra"></video>
+        <div class="barcode-target" aria-hidden="true"><span></span></div>
+        <div id="barcodeCameraStatus" class="barcode-camera-status">Préparation de la caméra…</div>
+      </div>
+      <button type="button" class="secondary small barcode-retry" id="retryBarcodeCamera" hidden>Réessayer la caméra</button>
+      <div class="barcode-divider"><span>ou</span></div>
+      <label>Entrer le numéro sous le code-barres
+        <div class="barcode-manual-row"><input id="barcodeManualCode" type="text" inputmode="numeric" autocomplete="off" placeholder="Ex. 737628064502"><button type="button" class="secondary" id="lookupBarcodeManual">Rechercher</button></div>
+      </label>
+      <section id="barcodeResult" class="barcode-result" hidden aria-live="polite">
+        <div class="barcode-result-heading"><img id="barcodeProductImage" alt="" hidden><div><span id="barcodeResultBadge" class="barcode-result-badge">Produit reconnu</span><p id="barcodeBrand" class="muted small"></p></div></div>
+        <label>Nom de l’aliment<input id="barcodeProductName" type="text" autocapitalize="sentences" autocomplete="off" placeholder="Entre un nom"></label>
+        <p id="barcodeResultHelp" class="muted tiny"></p>
+        <label id="barcodePortionWrap" class="barcode-portion-wrap" hidden>Quantité consommée <span class="barcode-portion-input"><input id="barcodePortionGrams" type="number" min="1" max="2000" step="1" inputmode="decimal" value="100"><b>g</b></span><small>Modifie la quantité pour calculer seulement ce que tu as réellement mangé.</small></label>
+        <div id="barcodeNutritionPreview" class="barcode-nutrition-preview" hidden></div>
+        <button type="button" class="primary" id="addBarcodeProduct">Ajouter au repas</button>
+      </section>
+      <p class="muted tiny barcode-source-note">Recherche de produits : Open Food Facts. Les valeurs nutritionnelles, lorsqu’elles existent, restent approximatives et modifiables.</p>
     </div>
+  </dialog>
 
-    <div class="police-tape tape-right" aria-hidden="true">
-      <span>ALIBI • DOSSIER • TÉMOIN • PREUVES</span>
-    </div>
+  <dialog id="sleepDialog">
+    <form id="sleepForm" class="dialog-card" autocomplete="off">
+      <div class="dialog-header"><div><p class="eyebrow">Repos</p><h2>Sommeil</h2></div><button type="button" class="icon-button close-dialog" aria-label="Fermer">✕</button></div>
+      <div class="sleep-dialog-hero"><span>😴</span><div><strong>Sommeil de la nuit dernière</strong><p class="muted small">La durée compte, mais le contexte de la nuit aussi.</p></div></div>
+      <label>Nombre d'heures<input id="sleepHours" name="sleep_hours_entry_v340" type="number" min="0" max="24" step="0.1" inputmode="decimal" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="next" placeholder="Ex. 7.5" aria-label="Nombre d’heures de sommeil"></label>
+      <fieldset class="sleep-marker-fieldset"><legend>🌙 Qu'est-ce qui a marqué ton sommeil ?</legend><p class="muted tiny">Tu peux choisir plusieurs réponses.</p><div class="sleep-marker-grid"><label class="sleep-marker-option"><input type="checkbox" data-sleep-tag value="frequent-wakings"><span><b>🔄</b>Réveils fréquents</span></label><label class="sleep-marker-option"><input type="checkbox" data-sleep-tag value="bathroom"><span><b>🚽</b>Levé pour uriner</span></label><label class="sleep-marker-option"><input type="checkbox" data-sleep-tag value="apnea"><span><b>😮‍💨</b>Ronflements / apnée</span></label><label class="sleep-marker-option"><input type="checkbox" data-sleep-tag value="falling-asleep"><span><b>😴</b>Difficulté à s’endormir</span></label><label class="sleep-marker-option"><input type="checkbox" data-sleep-tag value="early-waking"><span><b>⏰</b>Réveil très tôt</span></label><label class="sleep-marker-option"><input type="checkbox" data-sleep-tag value="nightmares"><span><b>😰</b>Cauchemars</span></label><label class="sleep-marker-option"><input type="checkbox" data-sleep-tag value="discomfort"><span><b>🥵</b>Trop chaud / inconfort</span></label><label class="sleep-marker-option"><input type="checkbox" data-sleep-tag value="none"><span><b>✅</b>Rien de particulier</span></label></div></fieldset>
+      <label>📝 Commentaire <span class="muted tiny">(facultatif)</span><textarea id="sleepComment" rows="3" maxlength="300" autocomplete="off" placeholder="Ex. Réveillé trois fois, nuit très fragmentée."></textarea></label>
+      <button type="submit" class="primary">Enregistrer le sommeil</button>
+    </form>
+  </dialog>
 
-    <div class="splash-inner">
-      <img
-        src="assets/images/logo/alibi-logo.png?v=044"
-        alt="Logo ALIBI"
-        class="splash-logo"
-        decoding="async"
-        fetchpriority="high"
-      />
+  <dialog id="activityDialog">
+    <form id="activityForm" class="dialog-card" autocomplete="off">
+      <div class="dialog-header"><div><p class="eyebrow">Mouvement</p><h2>Ajouter une activité</h2></div><button type="button" class="icon-button close-dialog" aria-label="Fermer">✕</button></div>
+      <fieldset class="activity-fieldset"><legend>Choisis une activité</legend>
+        <div id="activityChoices" class="activity-choices" role="radiogroup" aria-label="Type d’activité">
+          <button type="button" data-activity="Marche"><span>🚶</span><small>Marche</small></button>
+          <button type="button" data-activity="Course"><span>🏃</span><small>Course</small></button>
+          <button type="button" data-activity="Vélo"><span>🚴</span><small>Vélo</small></button>
+          <button type="button" data-activity="Musculation"><span>🏋️</span><small>Musculation</small></button>
+          <button type="button" data-activity="Yoga"><span>🧘</span><small>Yoga</small></button>
+          <button type="button" data-activity="Natation"><span>🏊</span><small>Natation</small></button>
+          <button type="button" data-activity="Autre"><span>✨</span><small>Autre</small></button>
+        </div>
+        <input id="activityType" type="hidden">
+      </fieldset>
+      <label>Durée en minutes<input id="activityMinutes" name="energie_activity_duration_value" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" placeholder="Ex. 45" aria-label="Durée de l’activité en minutes"></label>
+      <fieldset class="activity-intensity-fieldset"><legend>Intensité</legend><div class="activity-intensity-choices" role="radiogroup" aria-label="Intensité de l’activité"><button type="button" data-intensity="low">Faible</button><button type="button" data-intensity="moderate" class="active">Modérée</button><button type="button" data-intensity="high">Élevée</button></div><input id="activityIntensity" type="hidden" value="moderate"></fieldset>
+      <div class="activity-estimate-card"><div><span>🔥</span><div><small>Calories estimées</small><strong id="activityEstimateValue">— kcal</strong></div></div><p>Estimation indicative selon l’activité, la durée et l’intensité.</p></div>
+      <label>Calories mesurées <span class="muted tiny">(facultatif)</span><input id="activityActualCalories" type="number" min="0" max="10000" step="1" inputmode="numeric" autocomplete="off" placeholder="Ex. 320"><small class="field-hint">Entre la valeur de ta montre ou de ton appareil pour remplacer l’estimation.</small></label>
+      <div><p class="eyebrow">Activités enregistrées</p><div id="dayActivitiesList" class="day-activities-list"></div></div>
+      <button type="submit" class="primary">Ajouter l'activité</button>
+    </form>
+  </dialog>
 
-      <p class="splash-tagline">
-        Une enquête.<br />
-        Plusieurs jours.
-      </p>
+  <dialog id="feelingDialog">
+    <form id="feelingForm" class="dialog-card feeling-dialog-card" autocomplete="off">
+      <div class="dialog-header"><div><p class="eyebrow">Après le repas</p><h2>😊 Ressentis après</h2></div><button type="button" class="icon-button close-dialog" aria-label="Fermer">✕</button></div>
+      <div class="feeling-context"><span>🍽️</span><strong id="feelingMealContext"></strong></div>
+      <div id="feelingCarryNotice" class="notice info-notice" hidden><strong>Repris du ressenti avant</strong><p>Les mêmes éléments et intensités sont préremplis. Modifie-les, retire-les ou ajoute d’autres ressentis selon ton état actuel.</p></div>
+      <fieldset class="feeling-fieldset"><legend>Qu’as-tu ressenti après?</legend><p class="muted small">Chaque élément sélectionné possède sa propre intensité.</p><label class="feeling-search" for="afterFeelingSearch"><span aria-hidden="true">🔎</span><input id="afterFeelingSearch" type="search" autocomplete="off" placeholder="Rechercher un ressenti…"><button id="clearAfterFeelingSearch" type="button" aria-label="Effacer la recherche" hidden>×</button></label><div id="feelingTags" class="feeling-tags scored-feeling-picker"></div><p id="afterFeelingSearchEmpty" class="feeling-search-empty" hidden>Aucun ressenti trouvé.</p><div id="afterFeelingQualityNotice" class="feeling-quality-notice" hidden></div></fieldset>
+      <label>Autre chose? <textarea id="feelingNotes" name="energie_feeling_notes_value" autocomplete="one-time-code" autocapitalize="sentences" rows="3" placeholder="Notes facultatives"></textarea></label>
+      <button type="submit" class="primary">Enregistrer le ressenti</button>
+    </form>
+  </dialog>
+
+  <dialog id="globalObservationDialog">
+    <form id="globalObservationForm" class="dialog-card observation-dialog-card" autocomplete="off">
+      <div class="dialog-header"><div><p class="eyebrow">Sans l’attribuer à un repas</p><h2>🔎 Observation globale</h2></div><button type="button" class="icon-button close-dialog" aria-label="Fermer">✕</button></div>
+      <input id="globalObservationId" type="hidden">
+      <div class="observation-time-grid"><label>Date<input id="globalObservationDate" type="date" required></label><label>Début remarqué<input id="globalObservationTime" type="time" required></label></div>
+      <fieldset class="feeling-fieldset"><legend>Intensité</legend><div id="globalObservationIntensity" class="observation-intensity" role="radiogroup" aria-label="Intensité de l’observation"></div></fieldset>
+      <label>Durée<select id="globalObservationDuration"><option value="ongoing">Toujours présente</option><option value="under_hour">Moins d’une heure</option><option value="few_hours">Quelques heures</option><option value="day">Environ une journée</option><option value="several_days">Plusieurs jours</option><option value="unknown">Je ne sais pas</option></select></label>
+      <fieldset class="feeling-fieldset"><legend>Qu’as-tu observé?</legend><p class="muted small">Sélectionne tous les éléments qui s’appliquent.</p><div id="globalObservationTags" class="feeling-tags"></div></fieldset>
+      <fieldset class="feeling-fieldset"><legend>Contexte possible <span class="muted tiny">(facultatif)</span></legend><p class="muted small">Ce contexte aide à comparer les journées; il ne signifie pas qu’une cause est établie.</p><div class="observation-contexts"><label><input type="checkbox" value="food">🍽️ Alimentation</label><label><input type="checkbox" value="sleep">😴 Sommeil</label><label><input type="checkbox" value="stress">🫶 Stress</label><label><input type="checkbox" value="activity">🏃 Activité</label><label><input type="checkbox" value="environment">🌿 Environnement</label><label><input type="checkbox" value="unknown">❔ Inconnu</label></div></fieldset>
+      <fieldset class="feeling-fieldset"><legend>Repas à garder en tête <span class="muted tiny">(facultatif)</span></legend><p class="notice observation-caution">Piste seulement — sélectionner un repas ne prouve pas qu’il a causé l’observation.</p><div id="globalObservationMeals" class="observation-meals"></div></fieldset>
+      <label>Photo <span class="muted tiny">(facultatif, conservée sur cet appareil)</span><input id="globalObservationPhoto" type="file" accept="image/*" capture="environment"></label>
+      <div id="globalObservationPhotoPreviewWrap" class="photo-preview-wrap" hidden><img id="globalObservationPhotoPreview" alt="Aperçu de l’observation"><button id="removeGlobalObservationPhoto" type="button" class="secondary small">Retirer la photo</button></div>
+      <label>Notes <span class="muted tiny">(facultatif)</span><textarea id="globalObservationNotes" rows="3" placeholder="Ex. apparu graduellement, surtout aux avant-bras…"></textarea></label>
+      <div class="observation-form-actions"><button id="deleteGlobalObservation" type="button" class="danger" hidden>Supprimer</button><button type="submit" class="primary">Enregistrer l’observation</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="welcomeDialog" class="welcome-dialog">
+    <form id="welcomeForm" class="dialog-card welcome-card">
+      <div class="welcome-brand"><img src="assets/icon.svg" alt=""><div><p class="eyebrow">À propos d’Énergie</p><h2>Observer, jamais diagnostiquer</h2></div></div>
+      <p>Énergie aide à repérer des associations possibles entre les repas, le sommeil, l’hydratation, l’activité et le ressenti.</p>
+      <div class="notice info-notice"><strong>Important</strong><p>Les observations ne prouvent pas un lien de cause à effet, ne posent aucun diagnostic et ne remplacent pas un professionnel de la santé.</p></div>
+      <div class="dialog-actions"><button type="submit" class="primary">J’ai compris</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="trackedFeelingsDialog" class="tracked-feelings-dialog">
+    <form id="trackedFeelingsForm" class="dialog-card tracked-feelings-card">
+      <div class="dialog-header"><div><p class="eyebrow">Le cœur d’Énergie</p><h2>Mes ressentis suivis</h2></div><button type="button" class="icon-button" id="closeTrackedFeelings" aria-label="Fermer">✕</button></div>
+      <p>Choisis uniquement les ressentis que tu veux comprendre. Ce sont les seuls qui apparaîtront lors de tes saisies.</p>
+      <div class="tracked-feelings-reassurance"><span aria-hidden="true">🔒</span><span>Tu pourras modifier cette sélection en tout temps. Ton ancien historique ne sera jamais supprimé.</span></div>
+      <div class="tracked-feelings-toolbar"><strong id="trackedFeelingsCount">0 sélectionné</strong><button type="button" class="text-button" id="clearTrackedFeelings">Tout retirer</button></div>
+      <div id="trackedFeelingsChoices" class="tracked-feelings-choices"></div>
+      <p id="trackedFeelingsError" class="form-error" hidden>Choisis au moins un ressenti à suivre.</p>
+      <div class="dialog-actions"><button type="submit" class="primary">Enregistrer mes ressentis</button></div>
+    </form>
+  </dialog>
+
+  <section id="experienceLaunch" class="experience-launch" hidden aria-labelledby="experienceTitle">
+    <div class="experience-launch-card">
+      <div class="experience-brand">
+        <div class="experience-logo"><img src="assets/icon.svg" alt=""></div>
+        <div><p class="eyebrow">Bienvenue dans</p><h2 id="experienceTitle">Énergie</h2></div>
+      </div>
+      <h3>Découvre ce que ton journal peut raconter avec le temps.</h3>
+      <p class="experience-intro">Explore six mois de données fictives de Phil, puis vois comment les repas, le sommeil, l’eau, l’activité et le ressenti deviennent des observations utiles.</p>
+      <div class="experience-preview" aria-label="Aperçu de la démo">
+        <span><b>180</b><small>journées</small></span>
+        <span><b>640+</b><small>repas</small></span>
+        <span><b>4</b><small>tendances</small></span>
+      </div>
+      <button type="button" class="primary experience-primary" id="experienceStartDemo"><span>Explorer la démo guidée</span><b>→</b></button>
+      <button type="button" class="secondary experience-secondary" id="experienceStartEmpty">Commencer avec mon journal</button>
+      <p class="experience-note">La démo demeure entièrement locale et n’est jamais envoyée à Supabase.</p>
     </div>
   </section>
 
-  <div id="app">
+  <aside id="demoGuide" class="demo-guide" hidden aria-live="polite" aria-label="Visite guidée">
+    <div class="demo-guide-head">
+      <div class="demo-guide-brand"><img src="assets/icon.svg" alt=""><span><small>Journal fictif</small><strong>Phil</strong></span></div>
+      <button type="button" class="demo-guide-close" id="closeDemoTour" aria-label="Fermer la visite">×</button>
+    </div>
+    <div class="demo-guide-progress"><span id="demoTourProgressBar"></span></div>
+    <p class="eyebrow" id="demoTourProgress">Étape 1</p>
+    <h2 id="demoTourTitle">Bienvenue</h2>
+    <p id="demoTourText">Découvre comment Énergie transforme de petites notes quotidiennes en tendances personnelles.</p>
+    <div id="demoTourProof" class="demo-tour-proof"></div>
+    <div class="demo-guide-actions">
+      <button type="button" class="text-button" id="previousDemoTour">Retour</button>
+      <button type="button" class="primary" id="nextDemoTour">Continuer</button>
+    </div>
+    <button type="button" class="demo-guide-skip" id="skipDemoTour">Explorer librement</button>
+  </aside>
 
-    <!-- ACCUEIL -->
-    <main id="home-screen" class="screen screen-active">
-      <div class="app-shell">
+  <dialog id="demoFinalDialog" class="demo-final-dialog">
+    <section class="dialog-card demo-final-card">
+      <div class="demo-final-mascot"><img src="assets/icon.svg" alt=""></div>
+      <p class="eyebrow">Visite terminée</p>
+      <h2>Tu viens d’explorer 180 jours de journal.</h2>
+      <p>Énergie a relié des repas, du sommeil, de l’hydratation, de l’activité et des ressentis — tout en restant prudent sur ce que les données peuvent réellement dire.</p>
+      <div class="demo-final-checks"><span>✓ Journal quotidien</span><span>✓ Historique détaillé</span><span>✓ Graphiques</span><span>✓ Tendances expliquées</span></div>
+      <button type="button" class="primary" id="finishStartJournal">Commencer mon journal</button>
+      <button type="button" class="secondary" id="finishExploreDemo">Continuer à explorer la démo</button>
+      <button type="button" class="text-button demo-final-replay" id="finishReplayTour">Revoir la visite</button>
+    </section>
+  </dialog>
 
-        <section class="hero">
-          <div class="logo-wrap">
-            <img
-              src="assets/images/logo/alibi-logo.png?v=044"
-              alt="Logo ALIBI"
-              class="logo"
-            />
-          </div>
+  <dialog id="sourceDialog">
+    <div class="dialog-card source-card">
+      <div class="dialog-header"><div><p class="eyebrow">Transparence</p><h2 id="sourceTitle">Pourquoi je vois ceci?</h2></div><button type="button" class="icon-button close-dialog" aria-label="Fermer">✕</button></div>
+      <div id="sourceContent"></div>
+    </div>
+  </dialog>
 
-          <p class="eyebrow">AFFAIRES • PREUVES • MENSONGES</p>
-
-          <h1>
-            Une enquête.<br />
-            Plusieurs jours.
-          </h1>
-
-          <p class="hero-text">
-            Explore les scènes, confronte les témoignages et reconstruis
-            ce qui s’est réellement passé.
-          </p>
-        </section>
-
-        <section class="case-section">
-          <p class="section-label">AFFAIRE DISPONIBLE</p>
-
-          <article class="case-card">
-            <div class="case-image-wrap">
-              <img
-                src="assets/images/cases/case-001-chalet/chalet-main.png"
-                alt="Chalet au bord d'un lac"
-                class="case-image"
-              />
-
-              <div class="case-image-overlay"></div>
-
-              <div class="case-badge">
-                AFFAIRE 001
-              </div>
-
-              <div class="case-title-overlay">
-                <span class="case-kicker">DOSSIER OUVERT</span>
-                <h2>La semaine au chalet</h2>
-              </div>
-            </div>
-
-            <div class="case-content">
-              <div class="case-description teaser-lines" id="case-teaser">
-                <span>Une semaine au chalet entre amis.</span>
-                <span>Un vendredi soir bien arrosé.</span>
-                <span>Un cri te tire du sommeil.</span>
-                <span>Des pas se font entendre au loin.</span>
-                <span>Quelque chose s’est passé cette nuit.</span>
-              </div>
-
-              <div class="case-meta">
-                <div class="meta-item">
-                  <span class="meta-label">Durée</span>
-                  <strong>Plusieurs jours</strong>
-                </div>
-
-                <div class="meta-item">
-                  <span class="meta-label">Mode</span>
-                  <strong>Temps réel / Continu</strong>
-                </div>
-
-                <div class="meta-item">
-                  <span class="meta-label">Difficulté</span>
-                  <strong>À déterminer</strong>
-                </div>
-              </div>
-
-              <button
-                id="start-case-btn"
-                class="primary-btn"
-                type="button"
-              >
-                <span>Commencer l’enquête</span>
-                <span class="btn-arrow">→</span>
-              </button>
-            </div>
-          </article>
-        </section>
-
-        <footer class="footer">
-          <p>ALIBI • Prototype v0.2</p>
-        </footer>
-
-      </div>
-    </main>
-
-    <!-- INTRO AFFAIRE -->
-    <section id="intro-screen" class="screen intro-screen" aria-hidden="true">
-      <div class="intro-image">
-        <img
-          src="assets/images/cases/case-001-chalet/chalet-main.png"
-          alt="Le chalet au bord du lac"
-        />
-        <div class="intro-gradient"></div>
+  <dialog id="authDialog">
+    <form id="authForm" class="dialog-card auth-card">
+      <div class="dialog-header">
+        <div><p class="eyebrow">Sauvegarde infonuagique</p><h2 id="authTitle">Connexion</h2></div>
+        <button type="button" class="icon-button close-dialog" aria-label="Fermer">✕</button>
       </div>
 
-      <div class="intro-content">
-        <button id="intro-back-btn" class="ghost-back-btn" type="button">
-          ← Retour
-        </button>
-
-        <p class="intro-case-number">ALIBI • AFFAIRE 001</p>
-
-        <h2>La semaine au chalet</h2>
-
-        <div class="intro-story intro-story-animated">
-          <p class="story-time">SAMEDI — 8 H 17</p>
-          <p class="intro-line">Un cri strident venu de loin te tire du sommeil.</p>
-          <p class="intro-line">Des pas précipités se font entendre dehors.</p>
-          <p class="intro-line">Tu te lèves et suis les voix vers le lac.</p>
-          <p class="intro-line story-reveal">Quelque chose ne va pas.</p>
-        </div>
-
-        <button
-          id="open-case-btn"
-          class="primary-btn intro-open-btn"
-          type="button"
-        >
-          <span>Ouvrir le dossier</span>
-          <span class="btn-arrow">→</span>
-        </button>
+      <div class="brand-auth">
+        <img src="assets/icon.svg" alt="">
+        <div><strong>Énergie</strong><span>Connexion directe dans l’app iPhone</span></div>
       </div>
+
+      <div class="auth-tabs" role="tablist" aria-label="Type de connexion">
+        <button type="button" class="auth-tab active" id="loginTab" role="tab">Connexion</button>
+        <button type="button" class="auth-tab" id="signupTab" role="tab">Créer un compte</button>
+      </div>
+
+      <section class="auth-step">
+        <label>Adresse courriel
+          <input id="authEmail" type="email" autocomplete="email" required placeholder="toi@exemple.com">
+        </label>
+        <label>Mot de passe
+          <input id="authPassword" type="password" autocomplete="current-password" required minlength="8" placeholder="Au moins 8 caractères">
+        </label>
+        <label id="confirmPasswordLabel" hidden>Confirmer le mot de passe
+          <input id="authPasswordConfirm" type="password" autocomplete="new-password" minlength="8" placeholder="Répète le mot de passe">
+        </label>
+        <button type="submit" class="primary" id="authSubmit">Me connecter</button>
+        <button type="button" class="text-button" id="forgotPassword">Mot de passe oublié ou compte créé avec un lien magique?</button>
+      </section>
+
+      <p id="authMessage" class="small muted" aria-live="polite"></p>
+    </form>
+  </dialog>
+
+  <dialog id="passwordDialog">
+    <form id="passwordForm" class="dialog-card auth-card">
+      <div class="dialog-header">
+        <div><p class="eyebrow">Sécurité</p><h2>Choisir un mot de passe</h2></div>
+        <button type="button" class="icon-button close-dialog" aria-label="Fermer">✕</button>
+      </div>
+      <div class="brand-auth">
+        <img src="assets/icon.svg" alt="">
+        <div><strong>Presque terminé</strong><span>Ce mot de passe permettra la connexion directe dans l’app installée.</span></div>
+      </div>
+      <label>Nouveau mot de passe
+        <input id="newPassword" type="password" autocomplete="new-password" required minlength="8">
+      </label>
+      <label>Confirmer le mot de passe
+        <input id="newPasswordConfirm" type="password" autocomplete="new-password" required minlength="8">
+      </label>
+      <button type="submit" class="primary">Enregistrer le mot de passe</button>
+      <p id="passwordMessage" class="small muted" aria-live="polite"></p>
+    </form>
+  </dialog>
+
+  <input id="importFile" type="file" accept="application/json" hidden>
+  <dialog id="professionalClientDialog" class="professional-client-dialog">
+    <section class="dialog-card professional-client-picker">
+      <div class="dialog-header"><div><p class="eyebrow">Mode professionnel · Démo</p><h2>Choisir un client</h2></div><button type="button" class="icon-button" id="closeProfessionalPicker" aria-label="Quitter">✕</button></div>
+      <p class="muted">Sélectionne le dossier fictif à consulter en lecture seule.</p>
+      <div id="professionalClientList" class="professional-client-list"></div>
+      <p class="muted tiny">Les données et les notes de cette simulation restent locales à cet appareil.</p>
     </section>
-
-    <!-- DOSSIER PRINCIPAL -->
-    <section id="case-screen" class="screen case-screen" aria-hidden="true">
-
-      <header class="case-header">
-        <div>
-          <p class="case-header-kicker">AFFAIRE 001</p>
-          <h2>La semaine au chalet</h2>
-        </div>
-
-        <button
-          id="case-home-btn"
-          class="header-icon-btn"
-          type="button"
-          aria-label="Retour à l'accueil"
-        >
-          ⌂
-        </button>
-      </header>
-
-      <main class="case-main">
-
-        <!-- SCÈNE -->
-        <section class="case-panel panel-active" data-panel="scene">
-          <div class="panel-heading">
-            <p class="panel-kicker">SAMEDI — 8 H 17</p>
-            <h3>Le quai</h3>
-            <p id="scene-intro">
-              Chargement de la scène…
-            </p>
-          </div>
-
-          <div class="objective-card" id="scene-objective">
-            <span class="objective-label">OBJECTIF</span>
-            <strong>Examiner les environs du quai.</strong>
-            <span class="objective-progress" id="objective-progress">0 élément observé</span>
-          </div>
-
-          <div class="interactive-scene" id="interactive-scene">
-            <img
-              id="scene-image"
-              src="assets/images/cases/case-001-chalet/chalet-main.png"
-              alt="Vue du chalet, du quai et du lac"
-            />
-            <div class="scene-shade"></div>
-            <div id="scene-hotspots" class="scene-hotspots"></div>
-
-            <div class="scene-help">
-              <span>⌖</span>
-              <span>Touche les points pour examiner la scène.</span>
-            </div>
-          </div>
-
-          <div class="scene-discovery" id="scene-discovery" hidden>
-            <div class="discovery-content">
-              <p class="discovery-kicker" id="discovery-kicker">OBSERVATION</p>
-              <h4 id="discovery-title"></h4>
-              <p id="discovery-text"></p>
-
-              <div
-                id="discovery-added"
-                class="discovery-added"
-                hidden
-              >
-                <span>✓</span>
-                Ajouté aux preuves
-              </div>
-
-              <button id="close-discovery-btn" class="secondary-btn" type="button">
-                Continuer l’examen
-              </button>
-            </div>
-          </div>
-
-          <button id="talk-to-people-btn" class="primary-btn next-action-btn" type="button" hidden>
-            <span>Parler aux autres</span>
-            <span class="btn-arrow">→</span>
-          </button>
-        </section>
-
-        <!-- PERSONNES -->
-        <section class="case-panel" data-panel="people">
-          <div class="panel-heading">
-            <p class="panel-kicker">PERSONNES PRÉSENTES</p>
-            <h3>Autour du chalet</h3>
-            <p>
-              Écoute ce que chacun sait pour commencer à reconstruire la nuit.
-            </p>
-          </div>
-
-          <div id="people-grid" class="people-grid"></div>
-        </section>
-
-        <!-- PREUVES -->
-        <section class="case-panel" data-panel="evidence">
-          <div class="panel-heading">
-            <p class="panel-kicker">DOSSIER</p>
-            <h3>Preuves</h3>
-            <p>
-              Les éléments observés et confirmés sont conservés ici.
-            </p>
-          </div>
-
-          <div id="evidence-list" class="evidence-list">
-            <div class="placeholder-card" id="evidence-empty">
-              <span class="placeholder-icon">📁</span>
-              <strong>Aucune preuve classée</strong>
-              <p>Examine la scène pour commencer à remplir le dossier.</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- CHRONOLOGIE -->
-        <section class="case-panel" data-panel="timeline">
-          <div class="panel-heading">
-            <p class="panel-kicker">RECONSTRUCTION</p>
-            <h3>Chronologie</h3>
-            <p>
-              Les faits confirmés apparaissent ici au fur et à mesure.
-            </p>
-          </div>
-
-          <div class="timeline" id="timeline-list"></div>
-        </section>
-
-        <!-- NOTES -->
-        <section class="case-panel" data-panel="notes">
-          <div class="panel-heading">
-            <p class="panel-kicker">CARNET</p>
-            <h3>Notes</h3>
-            <p>
-              Garde ici tes propres hypothèses pendant l’enquête.
-            </p>
-          </div>
-
-          <textarea
-            id="detective-notes"
-            class="notes-area"
-            placeholder="Ex. : Qui a vu le canot pour la dernière fois ?"
-          ></textarea>
-
-          <p class="notes-hint">
-            Les notes sont sauvegardées automatiquement sur cet appareil.
-          </p>
-        </section>
-
-      </main>
-
-      <nav class="bottom-nav" aria-label="Navigation du dossier">
-        <button class="nav-btn nav-active" type="button" data-target="scene">
-          <span class="nav-icon">⌖</span>
-          <span>Scène</span>
-        </button>
-
-        <button class="nav-btn" type="button" data-target="people">
-          <span class="nav-icon">👥</span>
-          <span>Personnes</span>
-        </button>
-
-        <button class="nav-btn" type="button" data-target="evidence">
-          <span class="nav-icon">▣</span>
-          <span>Preuves</span>
-        </button>
-
-        <button class="nav-btn" type="button" data-target="timeline">
-          <span class="nav-icon">◷</span>
-          <span>Chronologie</span>
-        </button>
-
-        <button class="nav-btn" type="button" data-target="notes">
-          <span class="nav-icon">✎</span>
-          <span>Notes</span>
-        </button>
-      </nav>
-
-    </section>
-
-  </div>
-
-  <script src="js/app.js"></script>
-
-  <div
-    id="character-dialogue"
-    class="character-dialogue"
-    aria-hidden="true"
-    hidden
-  >
-    <div class="dialogue-backdrop" data-dialogue-close></div>
-
-    <section class="dialogue-sheet" role="dialog" aria-modal="true" aria-labelledby="dialogue-name">
-      <button class="dialogue-close" type="button" aria-label="Fermer" data-dialogue-close>×</button>
-
-      <header class="dialogue-person-header">
-        <img id="dialogue-portrait" class="dialogue-portrait" src="" alt="" />
-        <div>
-          <p class="dialogue-kicker">CONVERSATION</p>
-          <h3 id="dialogue-name"></h3>
-          <p id="dialogue-role" class="dialogue-role"></p>
-        </div>
-      </header>
-
-      <div id="dialogue-thread" class="dialogue-thread"></div>
-
-      <div id="dialogue-topics" class="dialogue-topics"></div>
-    </section>
-  </div>
-
+  </dialog>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js?v=3.7.1"></script>
+  <script src="i18n.js?v=3.13.2"></script>
+  <script src="foods.js?v=3.8.0"></script>
+  <script src="food-categories.js?v=3.31.2"></script>
+  <script src="dish-knowledge.js?v=3.31.2"></script>
+  <script src="brain/utils.js?v=3.8.0"></script>
+  <script src="brain/database.js?v=3.8.0"></script>
+  <script src="brain/recipes.js?v=3.9.0"></script>
+  <script src="brain/memory-engine.js?v=3.10.0"></script>
+  <script src="brain/parser.js?v=3.9.0"></script>
+  <script src="brain/confidence.js?v=3.8.0"></script>
+  <script src="brain/profile.js?v=3.8.0"></script>
+  <script src="brain/insight-engine.js?v=3.30.2"></script>
+  <script src="brain/index.js?v=3.12.0"></script>
+  <script src="observation-engine.js?v=3.30.2"></script>
+  <script src="demo-profiles.js?v=3.46.0"></script>
+  <script src="app.js?v=3.46.0"></script>
 </body>
 </html>
